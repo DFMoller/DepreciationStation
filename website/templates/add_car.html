@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Add Car{% endblock %}
+{% block main %}
+
+<div class="left">
+    
+</div>
+<div class="right">
+    <div class="menu-card scroll">
+            <form action="#" method="POST">
+                <h3>Add a Car</h3>
+                <div class="input-group"> <!-- name ==> what the attribute will be called in backend -->
+                    <label for="brand-input">*Brand:</label><input id="brand-input" type="text" name="brand" placeholder="Enter Brand" required>
+                    <label for="model-input">*Model:</label><input id="model-input" type="text" name="model" placeholder="Enter Model" required>
+                    <label for="body-input">*Body:</label><input id="body-input" type="text" name="body" placeholder="Enter Body" required>
+                </div>
+                <button type="submit" class="submit">Add Car</button>
+                <a href="{{ full_url }}" target="_blank" style="color: white;" class="form-link">{{ full_url }}</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

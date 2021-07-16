@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block title %}Data{% endblock %}
+{% block main %}
+
+    <table>
+        <tbody>
+            <tr>
+                <th>id</th>
+                <th>year</th>
+                <th>color</th>
+            </tr>
+
+            {% if searches %}
+
+            {% for search in searches %}
+
+            <tr>
+                <td>{{ search['id'] }}</td>
+                <td>{{ search['year'] }}</td>
+                <td>{{ search['color'] }}</td>
+            </tr>
+
+            {% endfor %}
+
+            {% endif %}
+
+        </tbody>
+    </table>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>id</th>
+                <th>search_id</th>
+                <th>value</th>
+                <th>mileage</th>
+                <th>title</th>
+                <th>date</th>
+                <th>rel_link</th>
+            </tr>
+
+            {% if readings %}
+
+            {% for reading in readings %}
+
+            <tr>
+                <td>{{ reading['id'] }}</td>
+                <td>{{ reading['search_id'] }}</td>
+                <td>{{ reading['value'] }}</td>
+                <td>{{ reading['mileage'] }}</td>
+                <td>{{ reading['title'] }}</td>
+                <td>{{ reading['date'] }}</td>
+                <td>{{ reading['rel_link'] }}</td>
+            </tr>
+
+            {% endfor %}
+
+            {% endif %}
+
+        </tbody>
+    </table>
+
+    
+
+{% endblock %}

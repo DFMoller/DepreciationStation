@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='index.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.0.2/chart.min.js"></script>
+    <title>{% block title %}{% endblock %}</title>
+
+    {% block style %}{% endblock %}
+
+</head>
+<body>
+    <nav>
+        {% block backbutton %}{% endblock %}
+        <div class="logo">
+            <svg width="70"  viewBox="0 0 114 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M40.806 33.1224C40.806 33.1224 39.0403 39 32.5664 39C26.0924 39 23.7383 33.1224 23.7383 33.1224H14.3216C14.3216 33.1224 -0.391947 29.5959 3.72784 26.0694C7.84763 22.5429 15.4986 18.4286 19.6184 17.2531C23.7382 16.0776 43.7486 14.9021 43.7486 14.9021C43.7486 14.9021 52.5768 6.08574 55.5195 4.32247C58.4622 2.55921 75.5299 2.55915 80.2382 4.32246C84.9466 6.08577 95.5403 11.3755 106.134 15.4898C116.728 19.6041 106.723 31.3592 106.723 31.3592C103.191 33.7102 96.7174 33.1224 96.7174 33.1224C96.7174 33.1224 93.7747 39 87.3008 39C80.8268 39 78.4726 33.1224 78.4726 33.1224" stroke="#EE6945" stroke-width="6"/>
+                </svg>
+            <h1>Depreciation Station</h1>
+        </div>
+        {% block year_selection %}{% endblock %}
+    </nav>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            {% if category == "error" %}
+                <p class="alert alert-error">{{message}}</p>
+            {%  elif category == "success" %}
+                <p class="alert alert-success">{{message}}</p>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <main>
+        {% block main %}{% endblock %}
+        <img class="background-img" src="../static/img/background.png">
+    </main>
+    {% block javascript %}{% endblock %}
+</body>
+</html>

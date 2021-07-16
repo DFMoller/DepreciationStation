@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+{% block year_selection %}
+
+{% endblock %}
+{% block main %}
+<form id="year-form" action="" method="POST">
+    <div class="radios-tab">
+        <h3>Model Year:</h3>
+        <div class="radios">
+            {% for year in years: %}
+                {% if year == year_selection: %}
+                    <label for="radio-{{ year }}"><input onchange="reloadPage()" id="radio-{{ year }}" value="{{ year }}" type="radio" name="year-selection" checked>{{ year }}</label>
+                {% else: %}
+                    <label for="radio-{{ year }}"><input onchange="reloadPage()" id="radio-{{ year }}" value="{{ year }}" type="radio" name="year-selection">{{ year }}</label>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</form>
+<div class="home-wrapper">
+    <div class="left-col">
+
+        <embed class="graph" src="{{ snapshot_graph | safe }}" type="image/svg+xml">
+    
+    </div>
+    <div class="right-col">
+        
+        <embed class="graph" src="{{ timeline_graph | safe }}" type="image/svg+xml">
+    
+    </div>
+</div>
+
+{% endblock %}
+
+{% block javascript %}
+<script>
+
+    function reloadPage(){
+
+        var yearForm = document.getElementById("year-form");
+        yearForm.submit();
+
+    }
+
+    // document.addEventListener("DOMContentLoaded", function(){
+
+    //     console.log("Test");
+    //     setTimeout(function(){
+    //         legends = document.getElementById("activate-serie-0");
+    //         console.log(legends);
+    //     }, 3000)
+       
+
+    // })
+</script>
+{% endblock %}
