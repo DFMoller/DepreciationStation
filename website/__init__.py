@@ -126,7 +126,7 @@ def startRestfulAPI(app, Reading, Search):
 
             feedback = {
                 "Function": "ADD SEARCH",
-                "Search_Name": args["color"].capitalize() + " Cars from " + args["year"],
+                "Search_Name": args["color"].capitalize() + " Cars from " + str(args["year"]),
                 "Status": ""
             }
 
