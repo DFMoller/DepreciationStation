@@ -4,7 +4,7 @@ from os import path # os -> operating system
 from flask_admin.contrib.sqla import ModelView
 from flask_admin import Admin
 from flask_restful import Api, Resource, reqparse, abort, fields, marshal_with
-import json
+import json, datetime
 
 db = SQLAlchemy()
 DB_NAME = "colors_database.db"
@@ -85,6 +85,7 @@ def startRestfulAPI(app, Reading, Search):
             # print("Data: " + str(type(data_received)))
 
             feedback = {
+                "Function": "POST READINGS DATA",
                 "items_with_empty_parameters": 0,
                 "items_already_existing": 0,
                 "new_added": 0,
@@ -112,21 +113,36 @@ def startRestfulAPI(app, Reading, Search):
                 db.session.commit()
                 feedback['committed'] = True
 
+            logFeedback(feedback)
+
             return feedback
     
     class postSearch(Resource):
         
         @marshal_with(search_fields)
         def post(self):
-            args = args = search_post_args.parse_args()
+            
+            args = search_post_args.parse_args()
+
+            feedback = {
+                "Function": "ADD SEARCH",
+                "Search_Name": args["color"].capitalize() + " Cars from " + args["year"],
+                "Status": ""
+            }
+
             result = Search.query.filter_by(color=args['color'], year=args['year']).first()
 
             if result:
+                feedback["Status"] = "Search Already Exists"
+                logFeedback(feedback)
                 abort(409, message="Search for " + args['color'].capitalize() + " Cars of " + str(args['year']) + " already exists")
 
             new_search = Search(year=args['year'], color=args['color'].lower())
             db.session.add(new_search)
             db.session.commit()
+
+            feedback["Status"] = "New Search Added to Database"
+            logFeedback(feedback)
 
             return new_search, 201
 
@@ -134,6 +150,11 @@ def startRestfulAPI(app, Reading, Search):
 
         # @marshal_with(get_cars)
         def get(self):
+
+            feedback = {
+                "Function": "GET LIST OF SEARCHES"
+            }
+
             searches = Search.query.all()
             serializable_searches = []
             for search in searches:
@@ -142,11 +163,35 @@ def startRestfulAPI(app, Reading, Search):
                 instance["year"] = search.year
                 instance["color"] = search.color
                 serializable_searches.append(instance)
+
+            logFeedback(feedback)
+
             return serializable_searches
 
     
     api.add_resource(postReadings, "/addReadings")
     api.add_resource(postSearch, "/addSearch")
     api.add_resource(getSearches, "/getSearches")
+
+
+
+
+def logFeedback(feedback):
+
+    feedback_string = f'''
+
+******************
+DateTime: {datetime.datetime.now()}
+******************
+'''
+
+    for key in feedback:
+        feedback_string += key + ": " + str(feedback[key]) + "\n"
+
+    feedback_string += "******************"
+
+    with open("api_log.txt", "a") as file:
+        file.write(feedback_string)
+        file.close()
     
 
