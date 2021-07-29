@@ -24,9 +24,10 @@ class Search(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     year = db.Column(db.String(100))
     color = db.Column(db.String(100))
-    readings = db.relationship('Reading')
+    readings = db.relationship('History')
+    todays = db.relationship('Today')
 
-class Reading(db.Model):
+class Today(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     search_id = db.Column(db.Integer, db.ForeignKey('search.id'))
     title = db.Column(db.String(100))
@@ -34,3 +35,9 @@ class Reading(db.Model):
     mileage = db.Column(db.Float)
     date = db.Column(db.String(100))
     rel_link = db.Column(db.String(100))
+
+class History(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    search_id = db.Column(db.Integer, db.ForeignKey('search.id'))
+    median_value = db.Column(db.Float)
+    date = db.Column(db.String(100))

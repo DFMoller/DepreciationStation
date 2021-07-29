@@ -16,16 +16,20 @@ def plot_snapshot(graph_data, year):
         plot_background='transparent'
     )
 
-    
+
     # xy_chart = pygal.XY(style=custom_style, legend_at_bottom=True, legend_at_bottom_columns=len(years))
-    xy_chart = pygal.XY(style=custom_style, legend_at_bottom=True, stroke=False)
+    xy_chart = pygal.XY(style=custom_style, legend_at_bottom=True, stroke=False, dots_size=1.5)
     xy_chart.title = f'Vehicles from {year} listed on Autotrader Today'
     xy_chart.x_title = "Mileage (km)"
     xy_chart.y_title = "Value (Rand)"
 
+    # num_entries = 0
+
     for color in graph_data:
+        # num_entries += len(graph_data[color])
+        # if num_entries < 6000:
         xy_chart.add(color, graph_data[color])
-    
+
     return xy_chart.render_data_uri()
 
 def plot_timeline(graph_data, year):
@@ -42,29 +46,36 @@ def plot_timeline(graph_data, year):
     all_dates = []
     final_data = {}
     max_val = 0;
+    # for color in graph_data:
+    #     df = DataFrame(graph_data[color], columns=["mileage", "value", "date"])
+    #     unique_dates = df["date"].unique()
+    #     line = []
+    #     for date in unique_dates:
+    #         filtered_df = df[df["date"] == date]
+    #         sorted_df = filtered_df.sort_values("value")
+    #         median_value = sorted_df["value"].median()
+    #         if median_value > max_val:
+    #             max_val = median_value
+    #         instance = (datetime.strptime(date, '%d/%m/%Y'), int(median_value))
+    #         line.append(instance)
+    #         date_obj = datetime.strptime(date, '%d/%m/%Y')
+    #         if date_obj not in all_dates:
+    #             all_dates.append(date_obj)
+    #     final_data[color] = line
+
     for color in graph_data:
-        df = DataFrame(graph_data[color], columns=["mileage", "value", "date"])
-        unique_dates = df["date"].unique()
         line = []
-        for date in unique_dates:
-            filtered_df = df[df["date"] == date]
-            sorted_df = filtered_df.sort_values("value")
-            median_value = sorted_df["value"].median()
-            if median_value > max_val:
-                max_val = median_value
-            instance = (datetime.strptime(date, '%d/%m/%Y'), int(median_value))
-            line.append(instance)
-            date_obj = datetime.strptime(date, '%d/%m/%Y')
+        for tup in graph_data[color]:
+            # print("Tup: (" + tup[0] + ", " + str(tup[1]) + ")")
+            if int(tup[1]) > max_val:
+                max_val = int(tup[1])
+            date_obj = datetime.strptime(tup[0], '%d/%m/%Y')
             if date_obj not in all_dates:
                 all_dates.append(date_obj)
+            instance = (date_obj, int(tup[1]))
+            line.append(instance)
         final_data[color] = line
 
-    # max_val = 0
-    # for color in graph_data:
-    #     for tup in graph_data[color]:
-    #         if tup[1] > max_val:
-    #             max_val = tup[1]
-    # print(str(max_val))
 
     dateline = pygal.DateLine(style=custom_style, legend_at_bottom=True, x_value_formatter=lambda dt: dt.strftime('%d/%m/%Y'), range=(0, max_val + 100000), min_scale=max_val*0.0001)
     # xy_chart.x_value_formatter = lambda dt: str(dt)
@@ -72,20 +83,24 @@ def plot_timeline(graph_data, year):
     dateline.x_title = "Time"
     dateline.y_title = "Value (Rand)"
 
-    for col in final_data:
-        dateline.add(col, final_data[col])
+    for color in final_data:
+        dateline.add(color, final_data[color])
+
+    # for col in final_data:
+    #     dateline.add(col, final_data[col])
 
     all_dates = sorted(all_dates)
     x_labels = []
     for date in all_dates:
         x_labels.append(date) # This is a datetime object
-        print(date)
-    
+        # print(date)
+
     dateline.x_labels = x_labels
-    
+
     # dateline.x_value_formatter = lambda dt: '%s' % dt
 
     return dateline.render_data_uri()
+    # return None
 
 def remove_outliers(data):
     filtered_data = {}
@@ -93,7 +108,7 @@ def remove_outliers(data):
         df = DataFrame(data[color], columns=["mileage", "value"])
         z_scores = stats.zscore(df)
         abs_z_scores = np.abs(z_scores)
-        filtered_entries = (abs_z_scores < 2.5).all(axis=1)
+        filtered_entries = (abs_z_scores < 3).all(axis=1)
         new_df = df[filtered_entries]
         tuples = [tuple(x) for x in new_df.to_numpy()]
         filtered_data[color] = tuples
