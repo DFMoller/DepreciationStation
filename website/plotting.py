@@ -19,7 +19,7 @@ def plot_snapshot(graph_data, year):
 
     # xy_chart = pygal.XY(style=custom_style, legend_at_bottom=True, legend_at_bottom_columns=len(years))
     xy_chart = pygal.XY(style=custom_style, legend_at_bottom=True, stroke=False, dots_size=1.5)
-    xy_chart.title = f'Vehicles from {year} listed on Autotrader Today'
+    xy_chart.title = f'Vehicles from {year} listed on Autotrader Today, sorted by colour'
     xy_chart.x_title = "Mileage (km)"
     xy_chart.y_title = "Value (Rand)"
 
@@ -28,7 +28,7 @@ def plot_snapshot(graph_data, year):
     for color in graph_data:
         # num_entries += len(graph_data[color])
         # if num_entries < 6000:
-        xy_chart.add(color, graph_data[color])
+        xy_chart.add(color.capitalize(), graph_data[color])
 
     return xy_chart.render_data_uri()
 
@@ -79,20 +79,23 @@ def plot_timeline(graph_data, year):
 
     dateline = pygal.DateLine(style=custom_style, legend_at_bottom=True, x_value_formatter=lambda dt: dt.strftime('%d/%m/%Y'), range=(0, max_val + 100000), min_scale=max_val*0.0001)
     # xy_chart.x_value_formatter = lambda dt: str(dt)
-    dateline.title = f'Vehicles from {year} || Historical Data'
+    # dateline.title = f'Vehicles from {year} || Historical Data'
+    dateline.title = f'Daily median values of cars from {year}, per colour (Historical Data)'
     dateline.x_title = "Time"
     dateline.y_title = "Value (Rand)"
 
     for color in final_data:
-        dateline.add(color, final_data[color])
+        dateline.add(color.capitalize(), final_data[color])
 
     # for col in final_data:
     #     dateline.add(col, final_data[col])
 
     all_dates = sorted(all_dates)
     x_labels = []
-    for date in all_dates:
-        x_labels.append(date) # This is a datetime object
+    # num_dates = len(all_dates)
+    for count, date in enumerate(all_dates):
+        if count % 2 == 0:
+            x_labels.append(date) # This is a datetime object
         # print(date)
 
     dateline.x_labels = x_labels

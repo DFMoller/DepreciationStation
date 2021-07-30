@@ -185,12 +185,14 @@ main{
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 1rem;
 }
 .home-wrapper embed{
     width: 90%;
 }
 .radios-tab{
-    background-color: var(--col-orange);
+    /* background-color: var(--col-orange); */
+    background-color: var(--col-blue2);
     display: flex;
     align-items: center;
     padding: 0.3rem 1rem;
@@ -216,4 +218,11 @@ main{
 .radios input{
     width: auto;
     margin: 0 0.25rem 0 0;
+}
+.info{
+    color: var(--col-blue1);
+    width: 80%;
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+    text-align: center;
 }

@@ -1,0 +1,353 @@
+
+
+******************
+DateTime: 2021-07-20 17:46:19.283207
+******************
+Function: ADD SEARCH
+Search_Name: Black Cars from 2015
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-07-20 17:46:19.321811
+******************
+Function: ADD SEARCH
+Search_Name: Black Cars from 2016
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-07-20 17:46:19.346722
+******************
+Function: ADD SEARCH
+Search_Name: Black Cars from 2017
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-07-20 17:46:19.363835
+******************
+Function: ADD SEARCH
+Search_Name: Black Cars from 2018
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-07-20 17:46:19.380178
+******************
+Function: ADD SEARCH
+Search_Name: Black Cars from 2019
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-07-20 17:46:19.392345
+******************
+Function: ADD SEARCH
+Search_Name: Black Cars from 2020
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-07-20 17:46:19.412758
+******************
+Function: ADD SEARCH
+Search_Name: Red Cars from 2015
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-07-20 17:46:19.427437
+******************
+Function: ADD SEARCH
+Search_Name: Red Cars from 2016
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-07-20 17:46:19.440656
+******************
+Function: ADD SEARCH
+Search_Name: Red Cars from 2017
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-07-20 17:46:19.450515
+******************
+Function: ADD SEARCH
+Search_Name: Red Cars from 2018
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-07-20 17:46:19.468297
+******************
+Function: ADD SEARCH
+Search_Name: Red Cars from 2019
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-07-20 17:46:19.482379
+******************
+Function: ADD SEARCH
+Search_Name: Red Cars from 2020
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-07-20 17:46:19.494407
+******************
+Function: ADD SEARCH
+Search_Name: Blue Cars from 2015
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-07-20 17:46:19.508229
+******************
+Function: ADD SEARCH
+Search_Name: Blue Cars from 2016
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-07-20 17:46:19.524952
+******************
+Function: ADD SEARCH
+Search_Name: Blue Cars from 2017
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-07-20 17:46:19.539184
+******************
+Function: ADD SEARCH
+Search_Name: Blue Cars from 2018
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-07-20 17:46:19.567683
+******************
+Function: ADD SEARCH
+Search_Name: Blue Cars from 2019
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-07-20 17:46:19.603951
+******************
+Function: ADD SEARCH
+Search_Name: Blue Cars from 2020
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-07-20 17:46:19.620729
+******************
+Function: ADD SEARCH
+Search_Name: Grey Cars from 2015
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-07-20 17:46:19.632284
+******************
+Function: ADD SEARCH
+Search_Name: Grey Cars from 2016
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-07-20 17:46:19.637817
+******************
+Function: ADD SEARCH
+Search_Name: Grey Cars from 2017
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-07-20 17:46:19.662563
+******************
+Function: ADD SEARCH
+Search_Name: Grey Cars from 2018
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-07-20 17:46:19.677775
+******************
+Function: ADD SEARCH
+Search_Name: Grey Cars from 2019
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-07-20 17:46:19.691780
+******************
+Function: ADD SEARCH
+Search_Name: Grey Cars from 2020
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-07-20 17:46:19.710339
+******************
+Function: ADD SEARCH
+Search_Name: Orange Cars from 2015
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-07-20 17:46:19.726392
+******************
+Function: ADD SEARCH
+Search_Name: Orange Cars from 2016
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-07-20 17:46:19.739743
+******************
+Function: ADD SEARCH
+Search_Name: Orange Cars from 2017
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-07-20 17:46:19.758262
+******************
+Function: ADD SEARCH
+Search_Name: Orange Cars from 2018
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-07-20 17:46:19.776106
+******************
+Function: ADD SEARCH
+Search_Name: Orange Cars from 2019
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-07-20 17:46:19.818614
+******************
+Function: ADD SEARCH
+Search_Name: Orange Cars from 2020
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-07-20 17:46:19.836775
+******************
+Function: ADD SEARCH
+Search_Name: Silver Cars from 2015
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-07-20 17:46:19.854231
+******************
+Function: ADD SEARCH
+Search_Name: Silver Cars from 2016
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-07-20 17:46:19.872591
+******************
+Function: ADD SEARCH
+Search_Name: Silver Cars from 2017
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-07-20 17:46:19.893431
+******************
+Function: ADD SEARCH
+Search_Name: Silver Cars from 2018
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-07-20 17:46:19.910293
+******************
+Function: ADD SEARCH
+Search_Name: Silver Cars from 2019
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-07-20 17:46:19.919367
+******************
+Function: ADD SEARCH
+Search_Name: Silver Cars from 2020
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-07-20 17:46:19.941379
+******************
+Function: ADD SEARCH
+Search_Name: White Cars from 2015
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-07-20 17:46:19.958121
+******************
+Function: ADD SEARCH
+Search_Name: White Cars from 2016
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-07-20 17:46:19.971791
+******************
+Function: ADD SEARCH
+Search_Name: White Cars from 2017
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-07-20 17:46:19.987196
+******************
+Function: ADD SEARCH
+Search_Name: White Cars from 2018
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-07-20 17:46:20.001221
+******************
+Function: ADD SEARCH
+Search_Name: White Cars from 2019
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-07-20 17:46:20.018510
+******************
+Function: ADD SEARCH
+Search_Name: White Cars from 2020
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-07-20 17:46:20.036593
+******************
+Function: GET LIST OF SEARCHES
+******************
+
+******************
+DateTime: 2021-07-20 18:13:18.846728
+******************
+Function: POST READINGS DATA
+items_with_empty_parameters: 0
+items_already_existing: 462
+new_added: 33174
+committed: True
+******************
