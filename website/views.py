@@ -72,28 +72,38 @@ def home():
 # def delete():
 
 #     all_history = History.query.all()
-#     all_today = Today.query.all()
+#     # all_today = Today.query.all()
 
-#     today = date.today().strftime('%d/%m/%Y')
+#     # today = date.today().strftime('%d/%m/%Y')
+#     cutoff = datetime.strptime("29/07/2021", '%d/%m/%Y')
 
 #     history_deleted = 0
+#     # discard = []
 #     for x in all_history:
-#         if x.date == today:
+#         if datetime.strptime(x.date, '%d/%m/%Y') < cutoff:
 #             db.session.delete(x)
+#             # if x.date not in discard:
+#             #     discard.append(x.date)
 #             history_deleted += 1
 
-#     today_deleted = 0
-#     for x in all_today:
-#         if x.date == today:
-#             db.session.delete(x)
-#             today_deleted += 1
+#     # ret_str = ""
+#     # for x in discard:
+#     #     ret_str += x + ", "
 
-#     if (history_deleted + today_deleted) > 0:
+#     # return ret_str
+
+#     # today_deleted = 0
+#     # for x in all_today:
+#     #     if x.date == today:
+#     #         db.session.delete(x)
+#     #         today_deleted += 1
+
+#     if history_deleted > 0:
 #         db.session.commit()
 
 #     return {
-#         "History Deleted": history_deleted,
-#         "Today Deleted": today_deleted
+#         "History Deleted": history_deleted
+#         # "Today Deleted": today_deleted
 #     }
 
 

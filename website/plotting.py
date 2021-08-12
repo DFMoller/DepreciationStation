@@ -94,8 +94,8 @@ def plot_timeline(graph_data, year):
     x_labels = []
     # num_dates = len(all_dates)
     for count, date in enumerate(all_dates):
-        if count % 2 == 0:
-            x_labels.append(date) # This is a datetime object
+        # if count % 2 == 0:
+        x_labels.append(date) # This is a datetime object
         # print(date)
 
     dateline.x_labels = x_labels
