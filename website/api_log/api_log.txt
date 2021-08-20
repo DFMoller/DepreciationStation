@@ -53777,3 +53777,807 @@ items_already_existing: 0
 new_added: 3459
 committed: True
 ******************
+
+******************
+DateTime: 2021-08-20 05:00:07.187440
+******************
+Function: ADD SEARCH
+Search_Name: Black Cars from 2015
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-08-20 05:00:07.710701
+******************
+Function: ADD SEARCH
+Search_Name: Black Cars from 2016
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-08-20 05:00:08.192891
+******************
+Function: ADD SEARCH
+Search_Name: Black Cars from 2017
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-08-20 05:00:08.680278
+******************
+Function: ADD SEARCH
+Search_Name: Black Cars from 2018
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-08-20 05:00:09.169056
+******************
+Function: ADD SEARCH
+Search_Name: Black Cars from 2019
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-08-20 05:00:09.651185
+******************
+Function: ADD SEARCH
+Search_Name: Black Cars from 2020
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-08-20 05:00:10.144139
+******************
+Function: ADD SEARCH
+Search_Name: Red Cars from 2015
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-08-20 05:00:10.636717
+******************
+Function: ADD SEARCH
+Search_Name: Red Cars from 2016
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-08-20 05:00:11.124668
+******************
+Function: ADD SEARCH
+Search_Name: Red Cars from 2017
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-08-20 05:00:11.611668
+******************
+Function: ADD SEARCH
+Search_Name: Red Cars from 2018
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-08-20 05:00:12.215089
+******************
+Function: ADD SEARCH
+Search_Name: Red Cars from 2019
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-08-20 05:00:12.747722
+******************
+Function: ADD SEARCH
+Search_Name: Red Cars from 2020
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-08-20 05:00:13.400901
+******************
+Function: ADD SEARCH
+Search_Name: Blue Cars from 2015
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-08-20 05:00:14.093725
+******************
+Function: ADD SEARCH
+Search_Name: Blue Cars from 2016
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-08-20 05:00:14.789264
+******************
+Function: ADD SEARCH
+Search_Name: Blue Cars from 2017
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-08-20 05:00:15.484691
+******************
+Function: ADD SEARCH
+Search_Name: Blue Cars from 2018
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-08-20 05:00:16.044299
+******************
+Function: ADD SEARCH
+Search_Name: Blue Cars from 2019
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-08-20 05:00:16.527845
+******************
+Function: ADD SEARCH
+Search_Name: Blue Cars from 2020
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-08-20 05:00:17.016536
+******************
+Function: ADD SEARCH
+Search_Name: Grey Cars from 2015
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-08-20 05:00:17.516496
+******************
+Function: ADD SEARCH
+Search_Name: Grey Cars from 2016
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-08-20 05:00:18.008463
+******************
+Function: ADD SEARCH
+Search_Name: Grey Cars from 2017
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-08-20 05:00:18.495697
+******************
+Function: ADD SEARCH
+Search_Name: Grey Cars from 2018
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-08-20 05:00:18.975593
+******************
+Function: ADD SEARCH
+Search_Name: Grey Cars from 2019
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-08-20 05:00:19.466239
+******************
+Function: ADD SEARCH
+Search_Name: Grey Cars from 2020
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-08-20 05:00:19.952287
+******************
+Function: ADD SEARCH
+Search_Name: Orange Cars from 2015
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-08-20 05:00:20.437502
+******************
+Function: ADD SEARCH
+Search_Name: Orange Cars from 2016
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-08-20 05:00:20.927385
+******************
+Function: ADD SEARCH
+Search_Name: Orange Cars from 2017
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-08-20 05:00:21.416156
+******************
+Function: ADD SEARCH
+Search_Name: Orange Cars from 2018
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-08-20 05:00:21.907203
+******************
+Function: ADD SEARCH
+Search_Name: Orange Cars from 2019
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-08-20 05:00:22.389088
+******************
+Function: ADD SEARCH
+Search_Name: Orange Cars from 2020
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-08-20 05:00:22.871661
+******************
+Function: ADD SEARCH
+Search_Name: Silver Cars from 2015
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-08-20 05:00:23.364322
+******************
+Function: ADD SEARCH
+Search_Name: Silver Cars from 2016
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-08-20 05:00:23.854166
+******************
+Function: ADD SEARCH
+Search_Name: Silver Cars from 2017
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-08-20 05:00:24.341750
+******************
+Function: ADD SEARCH
+Search_Name: Silver Cars from 2018
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-08-20 05:00:24.827431
+******************
+Function: ADD SEARCH
+Search_Name: Silver Cars from 2019
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-08-20 05:00:25.312482
+******************
+Function: ADD SEARCH
+Search_Name: Silver Cars from 2020
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-08-20 05:00:25.799721
+******************
+Function: ADD SEARCH
+Search_Name: White Cars from 2015
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-08-20 05:00:26.287761
+******************
+Function: ADD SEARCH
+Search_Name: White Cars from 2016
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-08-20 05:00:26.773114
+******************
+Function: ADD SEARCH
+Search_Name: White Cars from 2017
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-08-20 05:00:27.261255
+******************
+Function: ADD SEARCH
+Search_Name: White Cars from 2018
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-08-20 05:00:27.760645
+******************
+Function: ADD SEARCH
+Search_Name: White Cars from 2019
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-08-20 05:00:28.253299
+******************
+Function: ADD SEARCH
+Search_Name: White Cars from 2020
+Status: Search Already Exists
+******************
+
+******************
+DateTime: 2021-08-20 05:00:28.740636
+******************
+Function: GET LIST OF SEARCHES
+******************
+
+******************
+DateTime: 2021-08-20 05:00:36.151098
+******************
+Function: POST READINGS DATA
+current_id: 1
+items_with_empty_parameters: 0
+items_already_existing: 0
+new_added: 160
+committed: True
+******************
+
+******************
+DateTime: 2021-08-20 05:00:43.867891
+******************
+Function: POST READINGS DATA
+current_id: 2
+items_with_empty_parameters: 0
+items_already_existing: 0
+new_added: 177
+committed: True
+******************
+
+******************
+DateTime: 2021-08-20 05:00:51.398721
+******************
+Function: POST READINGS DATA
+current_id: 3
+items_with_empty_parameters: 0
+items_already_existing: 0
+new_added: 161
+committed: True
+******************
+
+******************
+DateTime: 2021-08-20 05:00:57.508788
+******************
+Function: POST READINGS DATA
+current_id: 4
+items_with_empty_parameters: 0
+items_already_existing: 0
+new_added: 124
+committed: True
+******************
+
+******************
+DateTime: 2021-08-20 05:01:03.947885
+******************
+Function: POST READINGS DATA
+current_id: 5
+items_with_empty_parameters: 0
+items_already_existing: 0
+new_added: 138
+committed: True
+******************
+
+******************
+DateTime: 2021-08-20 05:01:10.704593
+******************
+Function: POST READINGS DATA
+current_id: 6
+items_with_empty_parameters: 0
+items_already_existing: 0
+new_added: 140
+committed: True
+******************
+
+******************
+DateTime: 2021-08-20 05:01:29.493114
+******************
+Function: POST READINGS DATA
+current_id: 7
+items_with_empty_parameters: 0
+items_already_existing: 0
+new_added: 316
+committed: True
+******************
+
+******************
+DateTime: 2021-08-20 05:01:47.509090
+******************
+Function: POST READINGS DATA
+current_id: 8
+items_with_empty_parameters: 0
+items_already_existing: 0
+new_added: 323
+committed: True
+******************
+
+******************
+DateTime: 2021-08-20 05:02:05.934544
+******************
+Function: POST READINGS DATA
+current_id: 9
+items_with_empty_parameters: 0
+items_already_existing: 0
+new_added: 359
+committed: True
+******************
+
+******************
+DateTime: 2021-08-20 05:02:22.025193
+******************
+Function: POST READINGS DATA
+current_id: 10
+items_with_empty_parameters: 0
+items_already_existing: 0
+new_added: 321
+committed: True
+******************
+
+******************
+DateTime: 2021-08-20 05:02:36.347619
+******************
+Function: POST READINGS DATA
+current_id: 11
+items_with_empty_parameters: 0
+items_already_existing: 0
+new_added: 331
+committed: True
+******************
+
+******************
+DateTime: 2021-08-20 05:02:51.647124
+******************
+Function: POST READINGS DATA
+current_id: 12
+items_with_empty_parameters: 0
+items_already_existing: 0
+new_added: 348
+committed: True
+******************
+
+******************
+DateTime: 2021-08-20 05:03:03.814702
+******************
+Function: POST READINGS DATA
+current_id: 13
+items_with_empty_parameters: 0
+items_already_existing: 0
+new_added: 266
+committed: True
+******************
+
+******************
+DateTime: 2021-08-20 05:03:22.724413
+******************
+Function: POST READINGS DATA
+current_id: 14
+items_with_empty_parameters: 0
+items_already_existing: 0
+new_added: 378
+committed: True
+******************
+
+******************
+DateTime: 2021-08-20 05:03:41.607624
+******************
+Function: POST READINGS DATA
+current_id: 15
+items_with_empty_parameters: 0
+items_already_existing: 0
+new_added: 404
+committed: True
+******************
+
+******************
+DateTime: 2021-08-20 05:03:57.296639
+******************
+Function: POST READINGS DATA
+current_id: 16
+items_with_empty_parameters: 0
+items_already_existing: 0
+new_added: 351
+committed: True
+******************
+
+******************
+DateTime: 2021-08-20 05:04:14.621153
+******************
+Function: POST READINGS DATA
+current_id: 17
+items_with_empty_parameters: 0
+items_already_existing: 0
+new_added: 384
+committed: True
+******************
+
+******************
+DateTime: 2021-08-20 05:04:34.184936
+******************
+Function: POST READINGS DATA
+current_id: 18
+items_with_empty_parameters: 0
+items_already_existing: 0
+new_added: 440
+committed: True
+******************
+
+******************
+DateTime: 2021-08-20 05:04:52.405987
+******************
+Function: POST READINGS DATA
+current_id: 19
+items_with_empty_parameters: 0
+items_already_existing: 0
+new_added: 405
+committed: True
+******************
+
+******************
+DateTime: 2021-08-20 05:05:16.453682
+******************
+Function: POST READINGS DATA
+current_id: 20
+items_with_empty_parameters: 0
+items_already_existing: 0
+new_added: 546
+committed: True
+******************
+
+******************
+DateTime: 2021-08-20 05:05:40.275213
+******************
+Function: POST READINGS DATA
+current_id: 21
+items_with_empty_parameters: 0
+items_already_existing: 0
+new_added: 552
+committed: True
+******************
+
+******************
+DateTime: 2021-08-20 05:06:07.009554
+******************
+Function: POST READINGS DATA
+current_id: 22
+items_with_empty_parameters: 0
+items_already_existing: 0
+new_added: 597
+committed: True
+******************
+
+******************
+DateTime: 2021-08-20 05:06:36.000604
+******************
+Function: POST READINGS DATA
+current_id: 23
+items_with_empty_parameters: 0
+items_already_existing: 0
+new_added: 590
+committed: True
+******************
+
+******************
+DateTime: 2021-08-20 05:07:09.204477
+******************
+Function: POST READINGS DATA
+current_id: 24
+items_with_empty_parameters: 0
+items_already_existing: 0
+new_added: 723
+committed: True
+******************
+
+******************
+DateTime: 2021-08-20 05:07:12.991433
+******************
+Function: POST READINGS DATA
+current_id: 25
+items_with_empty_parameters: 0
+items_already_existing: 0
+new_added: 46
+committed: True
+******************
+
+******************
+DateTime: 2021-08-20 05:07:17.457626
+******************
+Function: POST READINGS DATA
+current_id: 26
+items_with_empty_parameters: 0
+items_already_existing: 0
+new_added: 51
+committed: True
+******************
+
+******************
+DateTime: 2021-08-20 05:07:20.246278
+******************
+Function: POST READINGS DATA
+current_id: 27
+items_with_empty_parameters: 0
+items_already_existing: 0
+new_added: 36
+committed: True
+******************
+
+******************
+DateTime: 2021-08-20 05:07:25.763948
+******************
+Function: POST READINGS DATA
+current_id: 28
+items_with_empty_parameters: 0
+items_already_existing: 0
+new_added: 95
+committed: True
+******************
+
+******************
+DateTime: 2021-08-20 05:07:30.865693
+******************
+Function: POST READINGS DATA
+current_id: 29
+items_with_empty_parameters: 0
+items_already_existing: 0
+new_added: 89
+committed: True
+******************
+
+******************
+DateTime: 2021-08-20 05:07:35.994669
+******************
+Function: POST READINGS DATA
+current_id: 30
+items_with_empty_parameters: 0
+items_already_existing: 0
+new_added: 75
+committed: True
+******************
+
+******************
+DateTime: 2021-08-20 05:08:20.195582
+******************
+Function: POST READINGS DATA
+current_id: 31
+items_with_empty_parameters: 0
+items_already_existing: 0
+new_added: 880
+committed: True
+******************
+
+******************
+DateTime: 2021-08-20 05:09:09.732858
+******************
+Function: POST READINGS DATA
+current_id: 32
+items_with_empty_parameters: 0
+items_already_existing: 0
+new_added: 1105
+committed: True
+******************
+
+******************
+DateTime: 2021-08-20 05:10:00.934995
+******************
+Function: POST READINGS DATA
+current_id: 33
+items_with_empty_parameters: 0
+items_already_existing: 0
+new_added: 1066
+committed: True
+******************
+
+******************
+DateTime: 2021-08-20 05:10:46.124587
+******************
+Function: POST READINGS DATA
+current_id: 34
+items_with_empty_parameters: 0
+items_already_existing: 0
+new_added: 932
+committed: True
+******************
+
+******************
+DateTime: 2021-08-20 05:11:39.542294
+******************
+Function: POST READINGS DATA
+current_id: 35
+items_with_empty_parameters: 0
+items_already_existing: 0
+new_added: 1104
+committed: True
+******************
+
+******************
+DateTime: 2021-08-20 05:12:53.771362
+******************
+Function: POST READINGS DATA
+current_id: 36
+items_with_empty_parameters: 0
+items_already_existing: 0
+new_added: 1585
+committed: True
+******************
+
+******************
+DateTime: 2021-08-20 05:14:46.980480
+******************
+Function: POST READINGS DATA
+current_id: 37
+items_with_empty_parameters: 0
+items_already_existing: 0
+new_added: 2390
+committed: True
+******************
+
+******************
+DateTime: 2021-08-20 05:17:18.288508
+******************
+Function: POST READINGS DATA
+current_id: 38
+items_with_empty_parameters: 0
+items_already_existing: 0
+new_added: 3030
+committed: True
+******************
+
+******************
+DateTime: 2021-08-20 05:20:05.725275
+******************
+Function: POST READINGS DATA
+current_id: 39
+items_with_empty_parameters: 0
+items_already_existing: 0
+new_added: 3173
+committed: True
+******************
+
+******************
+DateTime: 2021-08-20 05:22:49.162706
+******************
+Function: POST READINGS DATA
+current_id: 40
+items_with_empty_parameters: 0
+items_already_existing: 0
+new_added: 3005
+committed: True
+******************
+
+******************
+DateTime: 2021-08-20 05:25:41.218592
+******************
+Function: POST READINGS DATA
+current_id: 41
+items_with_empty_parameters: 0
+items_already_existing: 0
+new_added: 3130
+committed: True
+******************
+
+******************
+DateTime: 2021-08-20 05:28:51.239802
+******************
+Function: POST READINGS DATA
+current_id: 42
+items_with_empty_parameters: 0
+items_already_existing: 0
+new_added: 3474
+committed: True
+******************
