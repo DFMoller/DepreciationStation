@@ -194,7 +194,7 @@ main{
 }
 .radios-tab{
     /* background-color: var(--col-orange); */
-    background-color: var(--col-blue2);
+    /* background-color: var(--col-blue2); */
     display: flex;
     align-items: center;
     padding: 0.3rem 1rem;
@@ -204,6 +204,7 @@ main{
     white-space: nowrap;
     font-size: 1.2rem;
     margin: 0 1rem 0 0;
+    color: var(--col-blue2);
 }
 .radios{
     display: flex;
@@ -216,6 +217,7 @@ main{
     align-items: center;
     margin: 0 0.5rem;
     font-size: 0.8rem;
+    color: var(--col-blue2);
 }
 .radios input{
     width: auto;
@@ -269,8 +271,6 @@ main{
         width: 100%;
     }
     .radios-tab{
-        /* background-color: var(--col-orange); */
-        background-color: var(--col-blue2);
         display: flex;
         flex-direction: column;
         align-items: center;
