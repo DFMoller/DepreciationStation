@@ -41,7 +41,7 @@ def plot_timeline(graph_data, year):
 
     all_dates = []
     final_data = {}
-    max_val = 0;
+    max_val = 0
 
     for color in graph_data:
         line = []
@@ -55,6 +55,8 @@ def plot_timeline(graph_data, year):
             instance = (date_obj, int(tup[1]))
             line.append(instance)
         final_data[color] = line
+
+    # TODO: Add data to the final_data dictionary by interpolating for days that do not have readings
 
 
     dateline = pygal.DateLine(style=custom_style, legend_at_bottom=True, x_value_formatter=lambda dt: dt.strftime('%d/%m/%Y'), range=(0, max_val + 100000), min_scale=max_val*0.0001)
