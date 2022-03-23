@@ -1,2 +1,3 @@
 venv/
 website/colors_database.db
+website/__pycache__/

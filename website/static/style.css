@@ -226,7 +226,7 @@ main{
 .info{
     color: var(--col-blue1);
     width: 80%;
-    font-size: 0.8rem;
+    font-size: 1rem;
     margin-top: 0.5rem;
     text-align: center;
 }
