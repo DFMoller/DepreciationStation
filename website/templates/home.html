@@ -18,19 +18,19 @@
 {% endblock %}
 {% block main %}
 
-<p class="info">The goal of Depreciation Station is to compare the rate at which different coloured cars depreciate and for this, data is obtained from Autotrader using Python and web scraping. The scraping is automated to run daily on a Raspberry Pi 4 model b while this web page is hosted on PythonAnywhere. Data is communicated between these two nodes using a Flask RESTful API and starting in July 2021, some time needs to pass for data to be accumulated before any insight can be gained into the depreciation rates of different coloured cars. Come back tomorrow to see the new recordings!</p>
+<p class="info">The goal of Depreciation Station is to compare the rate at which different coloured cars depreciate and for this, data is obtained from Autotrader using Python and web scraping. The scraping is automated to run daily on a Raspberry Pi 4 model b while this web page is hosted on PythonAnywhere. Data is communicated between these two nodes using a Flask RESTful API and starting in July 2021, some time needs to pass for data to be accumulated before any insight can be gained into the depreciation rates of different coloured cars and you can find more information about the data below the graphs. Come back tomorrow to see the new recordings!</p>
 
 <div class="home-wrapper">
     <div class="left-col">
 
         <embed class="graph" src="{{ snapshot_graph | safe }}" type="image/svg+xml">
-        <p class="info">This graph shows a snapshot of cars ({{ year_selection }} model year) listed on Autotrader today. Each dot represents one car's color, mileage and value. This particular plot does not give one much insight into the depreciation of different coloured cars, but it shows the instantaneous distribution of cars for different colours.</p>
+        <p class="info">This graph shows a snapshot of cars ({{ year_selection }} model year) listed on Autotrader today. Each line represents the value-mileage distribution for cars of one color. This particular plot is not time dependent which is why it does not tell us anything about the depreciation rates of different coloured cars, but it is still useful to see the instantaneous distribution of cars for different colours. It is interesting to compare the snapshot graphs for different model years to see how the lines come closer together over time.</p>
     
     </div>
     <div class="right-col">
         
         <embed class="graph" src="{{ timeline_graph | safe }}" type="image/svg+xml">
-        <p class="info">This graph shows accumulated data recorded daily by the Raspberry Pi. As this plot is influenced by time, it should highlight any differences in depreciation rates of different coloured cars in the long-term. The daily process of scraping Autotrader works as follows: <br> For every colour and year, all cars listed on Autotrader are considered and their values are recorded. These values are ordered and the median value is saved for each combination of colour and model year. This data is sent daily from the RPI to this web page hosted on PythonAnywhere using a flask RESTful API and these median values are displayed above for cars from {{ year_selection }}.</p>
+        <p class="info">This graph shows accumulated data recorded daily by the Raspberry Pi. As this plot is time dependent, it should highlight any differences in depreciation rates of different coloured cars in the long-term. The daily process of scraping Autotrader works as follows: <br> For every colour and year, all cars listed on Autotrader are considered and their values are recorded. These values are ordered and the median value is saved for each combination of colour and model year. This data is sent daily from the RPI to this web page hosted on PythonAnywhere using a flask RESTful API and these median values are displayed above for cars from {{ year_selection }}.<br>After a few years, the slopes representing cars from these different categories can be compared, hopefully, to gain valuable insight into the depreciation characteristics of different coloured cars.</p>
 
     </div>
 </div>
