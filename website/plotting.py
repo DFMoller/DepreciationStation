@@ -3,7 +3,7 @@ from pygal.style import Style
 from scipy.stats import linregress, zscore, stats
 from pandas import DataFrame
 import numpy as np
-from datetime import datetime
+from datetime import datetime, timedelta
 
 def plot_snapshot(graph_data, year):
 
@@ -57,6 +57,31 @@ def plot_timeline(graph_data, year):
         final_data[color] = line
 
     # TODO: Add data to the final_data dictionary by interpolating for days that do not have readings
+
+    # Interpolate to add missing datapoints - Only for display! This is NOT written to db file
+    # for color in final_data:
+    #     prev_date = final_data[color][0][0] # date of first dp
+    #     prev_val = final_data[color][0][1] # value of first dp
+    #     for i, dp in enumerate(final_data[color]):
+    #         #start doing calculations from second dp in the line onwards
+    #         if i > 0:
+    #             date = dp[0]
+    #             val = dp[1]
+    #             gap_len = (date - prev_date).days - 1 # gap_len = 0 for consecutive days
+    #             # len > 0 means there are missing datapoints
+    #             if gap_len > 0:
+    #                 val_diff = val - prev_val
+    #                 val_increment = val_diff / (gap_len+1)
+    #                 for x in range(gap_len):
+    #                     new_date = prev_date + timedelta(days=x+1)
+    #                     new_val = prev_val + val_increment*(x+1)
+    #                     new_dp = (new_date, new_val)
+    #                     final_data[color].insert(i+x, new_dp)
+    #                     if new_date not in all_dates:
+    #                         all_dates.append(new_date)
+
+                    
+
 
 
     dateline = pygal.DateLine(style=custom_style, legend_at_bottom=True, x_value_formatter=lambda dt: dt.strftime('%d/%m/%Y'), range=(0, max_val + 100000), min_scale=max_val*0.0001)
