@@ -58,7 +58,7 @@ def plot_density_snapshot(graph_data, year):
             for dp in filtered_data[color]:
                 if dp[0] < batch_size*(batch+1) and dp[0] > batch_size*batch:
                     batch_values.append(int(dp[1]))
-            if len(batch_values) > 0:
+            if len(batch_values) > 2:
                 median_val = np.median(batch_values)
                 std = np.std(batch_values)
                 line.append((batch_size*(batch+1), median_val + std))
