@@ -5,7 +5,7 @@ from pandas import DataFrame
 import numpy as np
 from datetime import datetime, timedelta
 
-def plot_snapshot(graph_data, year):
+def plot_scatter_snapshot(graph_data, year):
 
     filtered_data = remove_outliers(graph_data)
 
@@ -19,8 +19,8 @@ def plot_snapshot(graph_data, year):
         colors=('#000000', '#dd2020', '#4078B7', '#545454', '#E98E19', '#A2A2A2', '#d2d2d2')
     )
 
-    xy_chart = pygal.XY(style=custom_style, legend_at_bottom=True, stroke=False, dots_size=1)
-    xy_chart.title = f'Vehicles from {year} listed on Autotrader Today, sorted by colour'
+    xy_chart = pygal.XY(style=custom_style, legend_at_bottom=True, stroke=False, dots_size=2)
+    xy_chart.title = f'Figure A: Mileage vs Value Scatter Plot for Vehicles from {year} listed on Autotrader Today, sorted by colour'
     xy_chart.x_title = "Mileage (km)"
     xy_chart.y_title = "Value (Rand)"
 
@@ -39,7 +39,7 @@ def plot_density_snapshot(graph_data, year):
         background='transparent',
         plot_background='transparent',
         colors=('#000000', '#dd2020', '#4078B7', '#545454', '#E98E19', '#A2A2A2', '#d2d2d2'),
-        opacity='.5'
+        opacity='.3'
     )
 
     filtered_data = remove_outliers(graph_data)
@@ -48,7 +48,7 @@ def plot_density_snapshot(graph_data, year):
         for dp in filtered_data[color]:
             if dp[0] > max_mileage:
                 max_mileage = dp[0]
-    batches = 7
+    batches = 6
     batch_size = max_mileage / 10
     density_data = {}
     for color in filtered_data:
@@ -58,15 +58,15 @@ def plot_density_snapshot(graph_data, year):
             for dp in filtered_data[color]:
                 if dp[0] < batch_size*(batch+1) and dp[0] > batch_size*batch:
                     batch_values.append(int(dp[1]))
-            if len(batch_values) > 2:
+            if len(batch_values) > 1:
                 median_val = np.median(batch_values)
                 std = np.std(batch_values)
-                line.append((batch_size*(batch+1), median_val + std))
+                line.append((batch_size*(batch+1), median_val))
         density_data[color] = line
 
-    xy_chart = pygal.XY(style=custom_style, fill=True, interpolate='cubic', legend_at_bottom=True, stroke=True, dots_size=2)
-    xy_chart.title = f'Vehicles from {year} listed on Autotrader Today, sorted by colour'
-    xy_chart.x_title = "Mileage (km)"
+    xy_chart = pygal.XY(style=custom_style, fill=False, interpolate='cubic', legend_at_bottom=True, stroke=True, dots_size=2)
+    xy_chart.title = f'Figure B: Median Distribution for Cars from {year} listed on Autotrader Today, sorted by colour'
+    xy_chart.x_title = "Median Mileage (km)"
     xy_chart.y_title = "Value (Rand)"
 
     for color in density_data:
@@ -138,7 +138,7 @@ def plot_timeline(graph_data, year):
 
     # Define Plot
     dateline = pygal.DateLine(style=custom_style, show_dots=False, stroke_style=stroke_style, fill=False, legend_at_bottom=True, x_value_formatter=lambda dt: dt.strftime('%d/%m/%Y'), range=(0, max_val + 100000), min_scale=max_val*0.0001)
-    dateline.title = f'Daily median values of cars from {year}, per colour (Historical Data)'
+    dateline.title = f'Figure C: Daily median values of cars from {year}, per colour (Historical Data)'
     dateline.x_title = "Time"
     dateline.y_title = "Value (Rand)"
 

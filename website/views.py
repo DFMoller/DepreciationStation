@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from . import db
 from .models import Search, History, Today
-from .plotting import plot_snapshot, plot_timeline, remove_outliers, plot_density_snapshot
+from .plotting import plot_scatter_snapshot, plot_timeline, plot_density_snapshot
 from datetime import datetime, date
 
 views = Blueprint('views', __name__) # don't have to call it the file name
@@ -63,10 +63,11 @@ def home():
     #         timeline_instance = (i.mileage, i.value, i.date)
     #         timeline_data[filtered_ids[i.search_id]].append(timeline_instance)
 
-    snapshot_graph = plot_density_snapshot(snapshot_data, year_selection)
+    scatter_snapshot_graph = plot_scatter_snapshot(snapshot_data, year_selection)
+    density_snapshot_graph = plot_density_snapshot(snapshot_data, year_selection)
     timeline_graph = plot_timeline(timeline_data, year_selection)
 
-    return render_template('home.html', snapshot_graph=snapshot_graph, timeline_graph=timeline_graph, years=years, year_selection=year_selection)
+    return render_template('home.html', density_snapshot_graph=density_snapshot_graph, scatter_snapshot_graph=scatter_snapshot_graph, timeline_graph=timeline_graph, years=years, year_selection=year_selection)
 
 # @views.route('/delete_data')
 # def delete():

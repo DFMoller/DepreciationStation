@@ -176,10 +176,10 @@ main{
     overflow-y: scroll;
 }
 .home-wrapper{
-    margin-top: 1rem;
+    /* margin-top: 1rem; */
     width: 100%;
     display: flex;
-    margin-top: 1rem;
+    /* margin-top: 1rem; */
     padding-bottom: 2rem;
 }
 .left-col, .right-col{
@@ -229,6 +229,9 @@ main{
     font-size: 1rem;
     margin-top: 0.5rem;
     text-align: center;
+}
+.graph{
+    margin: 1rem 0;
 }
 
 @media screen and (max-width: 1250px) {

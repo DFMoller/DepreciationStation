@@ -23,8 +23,9 @@
 <div class="home-wrapper">
     <div class="left-col">
 
-        <embed class="graph" src="{{ snapshot_graph | safe }}" type="image/svg+xml">
-        <p class="info">This graph shows a snapshot of cars ({{ year_selection }} model year) listed on Autotrader today. Each line represents the value-mileage distribution for cars of one color. This particular plot is not time dependent which is why it does not tell us anything about the depreciation rates of different coloured cars, but it is still useful to see the instantaneous distribution of cars for different colours. It is interesting to compare the snapshot graphs for different model years to see how the lines come closer together over time.</p>
+        <embed class="graph" src="{{ scatter_snapshot_graph | safe }}" type="image/svg+xml">
+        <p class="info">Figure A shows a snapshot of cars ({{ year_selection }} model year) listed on Autotrader today. Each dot represents the mileage and value of one car of a specific colour. This particular plot is not time dependent which is why it does not tell us anything about the depreciation rates of different coloured cars, but it is still useful to see the instantaneous distribution of cars for different colours.<br>Below, Figure B attempts to show the distribution of the cars in Figure A in a different way by plotting the median value of cars across the mileage spectrum, sorted by colour.</p>
+        <embed class="graph" src="{{ density_snapshot_graph | safe }}" type="image/svg+xml">
     
     </div>
     <div class="right-col">

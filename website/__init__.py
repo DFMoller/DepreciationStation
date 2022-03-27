@@ -27,11 +27,11 @@ def create_app():
 
     create_database(app)
 
-    # admin = Admin(app)
-    # admin.add_view(ModelView(Search, db.session))
-    # admin.add_view(ModelView(History, db.session))
-    # admin.add_view(ModelView(Today, db.session))
-
+    admin = Admin(app)
+    admin.add_view(ModelView(Search, db.session))
+    admin.add_view(ModelView(History, db.session))
+    admin.add_view(ModelView(Today, db.session))
+# 
     startRestfulAPI(app, History, Today, Search)
 
     return app

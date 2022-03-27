@@ -5,7 +5,7 @@ import time
 
 print("+++++ Starting create_app: +++++")
 app = create_app()
-# app.debug = True
+app.debug = True
 # toolbar = DebugToolbarExtension(app)
 
 if __name__ == '__main__': # will only execute if this file is run directly, not when it is imported!
