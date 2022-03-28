@@ -27,10 +27,10 @@ def create_app():
 
     create_database(app)
 
-    # admin = Admin(app)
-    # admin.add_view(ModelView(Search, db.session))
-    # admin.add_view(ModelView(History, db.session))
-    # admin.add_view(ModelView(Today, db.session))
+    admin = Admin(app)
+    admin.add_view(ModelView(Search, db.session))
+    admin.add_view(ModelView(History, db.session))
+    admin.add_view(ModelView(Today, db.session))
 # 
     startRestfulAPI(app, History, Today, Search)
 
@@ -134,18 +134,20 @@ def startRestfulAPI(app, History, Today, Search):
                 "Status": ""
             }
 
-            result = Search.query.filter_by(color=args['color'], year=args['year']).first()
+            result = Search.query.filter_by(color=args['color'].lower(), year=args['year']).first()
 
             if result:
                 feedback["Status"] = "Search Already Exists"
                 logFeedback(feedback)
-                abort(409, message="Search for " + args['color'].capitalize() + " Cars of " + str(args['year']) + " already exists")
+                abort(409, message=f'Search for: [id = {result.id}, color = {args["color"].capitalize()}, year = {str(args["year"])}] already exists')
 
             new_search = Search(year=args['year'], color=args['color'].lower())
             db.session.add(new_search)
             db.session.commit()
 
-            feedback["Status"] = "New Search Added to Database"
+            added_search = Search.query.filter_by(year=args['year'], color=args['color'].lower()).first()
+            
+            feedback["Status"] = f'New Search Added to Database: [id = {added_search.id}, color = {args["color"].capitalize()}, year = {str(args["year"])}]'
             logFeedback(feedback)
 
             return new_search, 201
