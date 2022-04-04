@@ -66,8 +66,8 @@ def plot_density_snapshot(graph_data, year):
 
     xy_chart = pygal.XY(style=custom_style, fill=False, interpolate='cubic', legend_at_bottom=True, stroke=True, dots_size=2)
     xy_chart.title = f'Figure B: Median Distribution for Cars from {year} listed on Autotrader Today, sorted by colour'
-    xy_chart.x_title = "Median Mileage (km)"
-    xy_chart.y_title = "Value (Rand)"
+    xy_chart.x_title = "Mileage (km)"
+    xy_chart.y_title = "Median Value (Rand)"
 
     for color in density_data:
         xy_chart.add(color.capitalize(), density_data[color])
