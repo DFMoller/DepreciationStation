@@ -13,31 +13,30 @@ DB_NAME = "colors_database.db"
 def create_app():
 
     original_stdout = sys.stdout
-    with open('/home/DFMoller/DepreciationStation/stdout/stdout.txt', 'w') as file:
-        
-        sys.stdout = file
+    f = open('/home/DFMoller/DepreciationStation/stdout/stdout.txt', 'w')
+    sys.stdout = f
 
-        app = Flask(__name__)
-        app.config['SECRET_KEY'] = 'abcdefg' # secures cookies and session data
-        app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
-        db.init_app(app)
+    app = Flask(__name__)
+    app.config['SECRET_KEY'] = 'abcdefg' # secures cookies and session data
+    app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
+    db.init_app(app)
 
-        # Register blueprints
-        from .views import views
+    # Register blueprints
+    from .views import views
 
-        app.register_blueprint(views, url_prefix='/') # prefix would go before any routes in blueprints
+    app.register_blueprint(views, url_prefix='/') # prefix would go before any routes in blueprints
 
-        # Make sure this model file runs befor we initialize our Database
-        from .models import History, Search, Today
+    # Make sure this model file runs befor we initialize our Database
+    from .models import History, Search, Today
 
-        create_database(app)
+    create_database(app)
 
-        admin = Admin(app)
-        admin.add_view(ModelView(Search, db.session))
-        admin.add_view(ModelView(History, db.session))
-        admin.add_view(ModelView(Today, db.session))
-    # 
-        startRestfulAPI(app, History, Today, Search)
+    admin = Admin(app)
+    admin.add_view(ModelView(Search, db.session))
+    admin.add_view(ModelView(History, db.session))
+    admin.add_view(ModelView(Today, db.session))
+# 
+    startRestfulAPI(app, History, Today, Search)
 
     return app
 
