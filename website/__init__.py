@@ -4,7 +4,7 @@ from os import path # os -> operating system
 from flask_admin.contrib.sqla import ModelView
 from flask_admin import Admin
 from flask_restful import Api, Resource, reqparse, abort, fields, marshal_with
-import json, datetime
+import json, datetime, sys
 from datetime import datetime, date
 
 db = SQLAlchemy()
@@ -12,27 +12,32 @@ DB_NAME = "colors_database.db"
 
 def create_app():
 
-    app = Flask(__name__)
-    app.config['SECRET_KEY'] = 'abcdefg' # secures cookies and session data
-    app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
-    db.init_app(app)
+    original_stdout = sys.stdout
+    with open('/home/DFMoller/DepreciationStation/stdout/stdout.txt', 'w') as file:
+        
+        sys.stdout = file
 
-    # Register blueprints
-    from .views import views
+        app = Flask(__name__)
+        app.config['SECRET_KEY'] = 'abcdefg' # secures cookies and session data
+        app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
+        db.init_app(app)
 
-    app.register_blueprint(views, url_prefix='/') # prefix would go before any routes in blueprints
+        # Register blueprints
+        from .views import views
 
-    # Make sure this model file runs befor we initialize our Database
-    from .models import History, Search, Today
+        app.register_blueprint(views, url_prefix='/') # prefix would go before any routes in blueprints
 
-    create_database(app)
+        # Make sure this model file runs befor we initialize our Database
+        from .models import History, Search, Today
 
-    admin = Admin(app)
-    admin.add_view(ModelView(Search, db.session))
-    admin.add_view(ModelView(History, db.session))
-    admin.add_view(ModelView(Today, db.session))
-# 
-    startRestfulAPI(app, History, Today, Search)
+        create_database(app)
+
+        admin = Admin(app)
+        admin.add_view(ModelView(Search, db.session))
+        admin.add_view(ModelView(History, db.session))
+        admin.add_view(ModelView(Today, db.session))
+    # 
+        startRestfulAPI(app, History, Today, Search)
 
     return app
 
