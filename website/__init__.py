@@ -12,10 +12,6 @@ DB_NAME = "colors_database.db"
 
 def create_app():
 
-    original_stdout = sys.stdout
-    f = open('/home/DFMoller/DepreciationStation/postreadings_stdout/postreadings_stdout.out', 'w')
-    sys.stdout = f
-
     app = Flask(__name__)
     app.config['SECRET_KEY'] = 'abcdefg' # secures cookies and session data
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
