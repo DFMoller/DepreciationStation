@@ -10,4 +10,5 @@ app.debug = True
 
 if __name__ == '__main__': # will only execute if this file is run directly, not when it is imported!
     print('+++++ Starting app.run: +++++')
-    app.run(host="0.0.0.0")
+    # app.run(host="0.0.0.0")
+    app.run()
