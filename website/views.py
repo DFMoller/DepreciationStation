@@ -20,7 +20,7 @@ def home():
     timeline_data = {}
 
     if request.method == "GET":
-        year_selection = years[0]
+        year_selection = years[-1]
     elif request.method == "POST":
         year_selection = request.form.get("year-selection")
 
