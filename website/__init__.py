@@ -81,7 +81,7 @@ def startRestfulAPI(app, History, Today, Search):
 
             args = reading_post_args.parse_args()
 
-            data_received = json.loads(args['data'].decode('utf-8'))
+            data_received = json.loads(args['data'])
 
             # data = request.form['data']
             # print("Data: " + str(type(data_received)))
