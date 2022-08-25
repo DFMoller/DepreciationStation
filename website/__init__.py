@@ -1,10 +1,11 @@
+from tracemalloc import start
 from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
 from os import path # os -> operating system
 from flask_admin.contrib.sqla import ModelView
 from flask_admin import Admin
 from flask_restful import Api, Resource, reqparse, abort, fields, marshal_with
-import json, datetime, sys
+import json, datetime, time
 from datetime import datetime, date
 
 db = SQLAlchemy()
@@ -75,50 +76,58 @@ def startRestfulAPI(app, History, Today, Search):
     }
 
     class postReadings(Resource):
-
-        # @marshal_with(reading_fields)
         def post(self):
-
+            start_time = time.time()
             args = reading_post_args.parse_args()
-
             data_received = json.loads(args['data'])
-
-            # data = request.form['data']
-            # print("Data: " + str(type(data_received)))
-
             feedback = {
-                "Function": "POST READINGS DATA",
+                "function": "POST READINGS DATA",
+                "response_time": 0,
                 "current_id": data_received[0]["search_id"],
                 "items_with_empty_parameters": 0,
                 "items_already_existing": 0,
                 "new_added": 0,
                 "committed": False
             }
-
-            for reading in data_received:
-
-                parameters = ("search_id", "value", "mileage", "title", "date", "rel_link")
-
-                if not all(key in reading for key in parameters):
-                    feedback['items_with_empty_parameters'] += 1
-
-                else:
-                    if (Today.query.filter_by(date=reading['date'], rel_link=reading['rel_link']).first()):
-                        # Already exists
-                        feedback['items_already_existing'] += 1
+            with open("DepreciationStation/website/debug/debug_id_{}.json".format(data_received[0]["search_id"]), "w+") as debug_file:
+                debug_data = {
+                    'search_id': data_received[0]["search_id"],
+                    'total_response_time': 0,
+                    'datapoints': []
+                }
+                for reading in data_received:
+                    iteration_start = time.time()
+                    parameters = ("search_id", "value", "mileage", "title", "date", "rel_link")
+                    if not all(key in reading for key in parameters):
+                        feedback['items_with_empty_parameters'] += 1
+                        continue
                     else:
-                        # Create new entry
-                        reading_instance = Today(search_id=reading['search_id'], title=reading['title'], value=reading['value'], mileage=reading['mileage'], date=reading['date'], rel_link=reading['rel_link'])
-                        db.session.add(reading_instance)
-                        feedback['new_added'] += 1
-
-            if feedback['items_with_empty_parameters'] == 0 and feedback['new_added'] > 0:
+                        if (Today.query.filter_by(date=reading['date'], rel_link=reading['rel_link']).first()):
+                            # Already exists
+                            feedback['items_already_existing'] += 1
+                        else:
+                            # Create new entry
+                            reading_instance = Today(search_id=reading['search_id'], title=reading['title'], value=reading['value'], mileage=reading['mileage'], date=reading['date'], rel_link=reading['rel_link'])
+                            db.session.add(reading_instance)
+                            feedback['new_added'] += 1
+                    debug_data["datapoints"].append({
+                        'search_id': reading['search_id'],
+                        'value': reading['value'],
+                        'mileage': reading['mileage'],
+                        'title': reading['title'],
+                        'date': reading['date'],
+                        'rel_link': reading['rel_link'],
+                        'processing_time': time.time() - iteration_start
+                    })
+                debug_data['total_response_time'] = time.time() - start_time
+                debug_file.write(json.dumps(debug_data))
+            if feedback['new_added'] > 0:
                 db.session.commit()
                 feedback['committed'] = True
-                deleteOldEntries()
-
+                # deleteOldEntries()
+            end_time = time.time()
+            feedback['response_time'] = end_time - start_time
             logFeedback(feedback)
-
             return feedback
 
     class postSearch(Resource):
@@ -127,40 +136,29 @@ def startRestfulAPI(app, History, Today, Search):
         def post(self):
 
             args = search_post_args.parse_args()
-
             feedback = {
                 "Function": "ADD SEARCH",
                 "Search_Name": args["color"].capitalize() + " Cars from " + str(args["year"]),
                 "Status": ""
             }
-
             result = Search.query.filter_by(color=args['color'].lower(), year=args['year']).first()
-
             if result:
                 feedback["Status"] = "Search Already Exists"
                 logFeedback(feedback)
                 abort(409, message=f'Search for: [id = {result.id}, color = {args["color"].capitalize()}, year = {str(args["year"])}] already exists')
-
             new_search = Search(year=args['year'], color=args['color'].lower())
             db.session.add(new_search)
             db.session.commit()
-
             added_search = Search.query.filter_by(year=args['year'], color=args['color'].lower()).first()
-            
             feedback["Status"] = f'New Search Added to Database: [id = {added_search.id}, color = {args["color"].capitalize()}, year = {str(args["year"])}]'
             logFeedback(feedback)
-
             return new_search, 201
 
     class getSearches(Resource):
-
-        # @marshal_with(get_cars)
         def get(self):
-
             feedback = {
                 "Function": "GET LIST OF SEARCHES"
             }
-
             searches = Search.query.all()
             serializable_searches = []
             for search in searches:
@@ -169,9 +167,7 @@ def startRestfulAPI(app, History, Today, Search):
                 instance["year"] = search.year
                 instance["color"] = search.color
                 serializable_searches.append(instance)
-
             logFeedback(feedback)
-
             return serializable_searches
 
     class deleteOldEntries(Resource):
