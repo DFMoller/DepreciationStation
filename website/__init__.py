@@ -95,6 +95,10 @@ def startRestfulAPI(app, History, Today, Search):
                     'total_response_time': 0,
                     'datapoints': []
                 }
+                debug_file.write(json.dumps(debug_data))
+            
+            with open("DepreciationStation/website/debug/debug_id_{}.json".format(data_received[0]["search_id"]), "r+") as debug_file:
+                debug_data = json.load(debug_file)
                 for reading in data_received:
                     iteration_start = time.time()
                     parameters = ("search_id", "value", "mileage", "title", "date", "rel_link")
@@ -119,7 +123,10 @@ def startRestfulAPI(app, History, Today, Search):
                         'rel_link': reading['rel_link'],
                         'processing_time': time.time() - iteration_start
                     })
+                    debug_file.seek(0)
+                    debug_file.write(json.dumps(debug_data))
                 debug_data['total_response_time'] = time.time() - start_time
+                debug_file.seek(0)
                 debug_file.write(json.dumps(debug_data))
             if feedback['new_added'] > 0:
                 db.session.commit()
