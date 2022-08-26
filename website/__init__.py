@@ -1,3 +1,4 @@
+from email import message
 from tracemalloc import start
 from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
@@ -5,7 +6,7 @@ from os import path # os -> operating system
 from flask_admin.contrib.sqla import ModelView
 from flask_admin import Admin
 from flask_restful import Api, Resource, reqparse, abort, fields, marshal_with
-import json, datetime, time
+import json, datetime, time, os
 from datetime import datetime, date
 
 db = SQLAlchemy()
@@ -82,21 +83,45 @@ def startRestfulAPI(app, History, Today, Search):
             data_received = json.loads(args['data'])
             feedback = {
                 "function": "POST READINGS DATA",
-                "response_time": 0,
-                "current_id": data_received[0]["search_id"],
-                "items_with_empty_parameters": 0,
-                "items_already_existing": 0,
-                "new_added": 0,
-                "committed": False
+                "current_id": data_received["search_id"],
+                "empty_parameters": False,
+                "item_already_exists": False,
+                "added": False,
+                "comitted": False,
+                "data_received": data_received
             }
-            with open("DepreciationStation/website/debug/debug_id_{}.json".format(data_received[0]["search_id"]), "w+") as debug_file:
-                debug_data = {
-                    'search_id': data_received[0]["search_id"],
-                    'total_response_time': 0,
-                    'datapoints': []
-                }
+            with open("DepreciationStation/website/debug/debug_id_{}.json".format(data_received["search_id"]), "r+") as debug_file:
+                debug_data = json.load(debug_file)
+                parameters = ("search_id", "value", "mileage", "title", "date", "rel_link")
+                if not all(key in data_received for key in parameters):
+                    feedback['empty_parameters'] = True
+                elif Today.query.filter_by(date=data_received['date'], rel_link=data_received['rel_link']).first():
+                    # Item already exists
+                    feedback['item_already_exists'] = True
+                else:
+                    reading_instance = Today(search_id=data_received['search_id'], title=data_received['title'], value=data_received['value'], mileage=data_received['mileage'], date=data_received['date'], rel_link=data_received['rel_link'])
+                    db.session.add(reading_instance)
+                    feedback['added'] = True
+                    db.session.commit()
+                    feedback['comitted'] = True
+                debug_data["datapoints"].append({
+                    'search_id': data_received['search_id'],
+                    'value': data_received['value'],
+                    'mileage': data_received['mileage'],
+                    'title': data_received['title'],
+                    'date': data_received['date'],
+                    'rel_link': data_received['rel_link'],
+                    'processing_time': time.time() - start_time,
+                    'feedback': feedback
+                })
+                debug_file.seek(0)
                 debug_file.write(json.dumps(debug_data))
-            
+            feedback['response_time'] = time.time() - start_time
+            logFeedback(feedback)
+            return feedback
+
+
+
             with open("DepreciationStation/website/debug/debug_id_{}.json".format(data_received[0]["search_id"]), "r+") as debug_file:
                 debug_data = json.load(debug_file)
                 for reading in data_received:
@@ -164,7 +189,8 @@ def startRestfulAPI(app, History, Today, Search):
     class getSearches(Resource):
         def get(self):
             feedback = {
-                "Function": "GET LIST OF SEARCHES"
+                "Function": "GET LIST OF SEARCHES",
+                "debug_files_cleared": 0
             }
             searches = Search.query.all()
             serializable_searches = []
@@ -174,6 +200,16 @@ def startRestfulAPI(app, History, Today, Search):
                 instance["year"] = search.year
                 instance["color"] = search.color
                 serializable_searches.append(instance)
+                # Reset debug files before posting
+                with open("DepreciationStation/website/debug/debug_id_{}.json".format(search.id), "w+") as debug_file:
+                    debug_data = {
+                        'search_id': search.id,
+                        'total_response_time': 0,
+                        'datapoints': []
+                    }
+                    debug_file.write(json.dumps(debug_data))
+                    feedback['debug_files_cleared'] += 1
+            
             logFeedback(feedback)
             return serializable_searches
 
