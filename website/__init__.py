@@ -203,7 +203,7 @@ def startRestfulAPI(app, History, Today, Search):
                 instance["color"] = search.color
                 serializable_searches.append(instance)
                 # Reset debug files before posting
-                with open("{GLOBAL}website/debug/debug_id_{}.json".format(GLOBAL, search.id), "w+") as debug_file:
+                with open("{}website/debug/debug_id_{}.json".format(GLOBAL, search.id), "w+") as debug_file:
                     debug_data = {
                         'search_id': search.id,
                         'total_response_time': 0,
