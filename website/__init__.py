@@ -11,6 +11,8 @@ from datetime import datetime, date
 
 db = SQLAlchemy()
 DB_NAME = "colors_database.db"
+# GLOBAL = "DepreciationStation/"
+GLOBAL = ""
 
 def create_app():
 
@@ -329,7 +331,7 @@ DateTime: {datetime.now()}
 
     feedback_string += "******************"
 
-    with open("DepreciationStation/website/api_log/api_log.txt", "a") as file:
+    with open("{}website/api_log/api_log.txt".format(GLOBAL), "a") as file:
         file.write(feedback_string)
         file.close()
 
