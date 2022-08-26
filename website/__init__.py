@@ -92,7 +92,7 @@ def startRestfulAPI(app, History, Today, Search):
                 "comitted": False,
                 "data_received": data_received
             }
-            with open("DepreciationStation/website/debug/debug_id_{}.json".format(data_received["search_id"]), "r+") as debug_file:
+            with open("{}website/debug/debug_id_{}.json".format(GLOBAL, data_received["search_id"]), "r+") as debug_file:
                 debug_data = json.load(debug_file)
                 parameters = ("search_id", "value", "mileage", "title", "date", "rel_link")
                 if not all(key in data_received for key in parameters):
@@ -124,45 +124,45 @@ def startRestfulAPI(app, History, Today, Search):
 
 
 
-            with open("DepreciationStation/website/debug/debug_id_{}.json".format(data_received[0]["search_id"]), "r+") as debug_file:
-                debug_data = json.load(debug_file)
-                for reading in data_received:
-                    iteration_start = time.time()
-                    parameters = ("search_id", "value", "mileage", "title", "date", "rel_link")
-                    if not all(key in reading for key in parameters):
-                        feedback['items_with_empty_parameters'] += 1
-                        continue
-                    else:
-                        if (Today.query.filter_by(date=reading['date'], rel_link=reading['rel_link']).first()):
-                            # Already exists
-                            feedback['items_already_existing'] += 1
-                        else:
-                            # Create new entry
-                            reading_instance = Today(search_id=reading['search_id'], title=reading['title'], value=reading['value'], mileage=reading['mileage'], date=reading['date'], rel_link=reading['rel_link'])
-                            db.session.add(reading_instance)
-                            feedback['new_added'] += 1
-                    debug_data["datapoints"].append({
-                        'search_id': reading['search_id'],
-                        'value': reading['value'],
-                        'mileage': reading['mileage'],
-                        'title': reading['title'],
-                        'date': reading['date'],
-                        'rel_link': reading['rel_link'],
-                        'processing_time': time.time() - iteration_start
-                    })
-                    debug_file.seek(0)
-                    debug_file.write(json.dumps(debug_data))
-                debug_data['total_response_time'] = time.time() - start_time
-                debug_file.seek(0)
-                debug_file.write(json.dumps(debug_data))
-            if feedback['new_added'] > 0:
-                db.session.commit()
-                feedback['committed'] = True
-                # deleteOldEntries()
-            end_time = time.time()
-            feedback['response_time'] = end_time - start_time
-            logFeedback(feedback)
-            return feedback
+            # with open("DepreciationStation/website/debug/debug_id_{}.json".format(data_received[0]["search_id"]), "r+") as debug_file:
+            #     debug_data = json.load(debug_file)
+            #     for reading in data_received:
+            #         iteration_start = time.time()
+            #         parameters = ("search_id", "value", "mileage", "title", "date", "rel_link")
+            #         if not all(key in reading for key in parameters):
+            #             feedback['items_with_empty_parameters'] += 1
+            #             continue
+            #         else:
+            #             if (Today.query.filter_by(date=reading['date'], rel_link=reading['rel_link']).first()):
+            #                 # Already exists
+            #                 feedback['items_already_existing'] += 1
+            #             else:
+            #                 # Create new entry
+            #                 reading_instance = Today(search_id=reading['search_id'], title=reading['title'], value=reading['value'], mileage=reading['mileage'], date=reading['date'], rel_link=reading['rel_link'])
+            #                 db.session.add(reading_instance)
+            #                 feedback['new_added'] += 1
+            #         debug_data["datapoints"].append({
+            #             'search_id': reading['search_id'],
+            #             'value': reading['value'],
+            #             'mileage': reading['mileage'],
+            #             'title': reading['title'],
+            #             'date': reading['date'],
+            #             'rel_link': reading['rel_link'],
+            #             'processing_time': time.time() - iteration_start
+            #         })
+            #         debug_file.seek(0)
+            #         debug_file.write(json.dumps(debug_data))
+            #     debug_data['total_response_time'] = time.time() - start_time
+            #     debug_file.seek(0)
+            #     debug_file.write(json.dumps(debug_data))
+            # if feedback['new_added'] > 0:
+            #     db.session.commit()
+            #     feedback['committed'] = True
+            #     # deleteOldEntries()
+            # end_time = time.time()
+            # feedback['response_time'] = end_time - start_time
+            # logFeedback(feedback)
+            # return feedback
 
     class postSearch(Resource):
 
@@ -203,7 +203,7 @@ def startRestfulAPI(app, History, Today, Search):
                 instance["color"] = search.color
                 serializable_searches.append(instance)
                 # Reset debug files before posting
-                with open("DepreciationStation/website/debug/debug_id_{}.json".format(search.id), "w+") as debug_file:
+                with open("{GLOBAL}website/debug/debug_id_{}.json".format(GLOBAL, search.id), "w+") as debug_file:
                     debug_data = {
                         'search_id': search.id,
                         'total_response_time': 0,
