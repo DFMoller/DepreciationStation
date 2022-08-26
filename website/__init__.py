@@ -11,8 +11,7 @@ from datetime import datetime, date
 
 db = SQLAlchemy()
 DB_NAME = "colors_database.db"
-# GLOBAL = "DepreciationStation/"
-GLOBAL = ""
+GLOBAL = "DepreciationStation/"
 
 def create_app():
 
