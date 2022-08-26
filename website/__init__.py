@@ -90,6 +90,7 @@ def startRestfulAPI(app, History, Today, Search):
                 "item_already_exists": False,
                 "added": False,
                 "comitted": False,
+                "response_time": 0,
                 "data_received": data_received
             }
             with open("{}website/debug/debug_id_{}.json".format(GLOBAL, data_received["search_id"]), "r+") as debug_file:
