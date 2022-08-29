@@ -47,9 +47,25 @@
             datasets: {{ datasets | safe }}
         };
 
+        const background_plugin = {
+            id: 'custom_canvas_background_color',
+            beforeDraw: (chart) => {
+            const {ctx} = chart;
+            var chartArea = chart.chartArea
+            ctx.save();
+            ctx.globalCompositeOperation = 'destination-over';
+            ctx.fillStyle = '#D4E5F0';
+            // chartArea.left, chartArea.top, chartArea.right - chartArea.left, chartArea.bottom - chartArea.top
+            //ctx.fillRect(0, 0, chart.width, chart.height);
+            ctx.fillRect(chartArea.left, chartArea.top, chartArea.right - chartArea.left, chartArea.bottom - chartArea.top);
+            ctx.restore();
+            }
+        };
+
         const config = {
             type: 'line',
             data: data,
+            plugins: [background_plugin],
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
@@ -67,7 +83,7 @@
                     },
                     title: {
                         display: true,
-                        text: 'Median value per color for all cars on Autotrader in {{ year_selection }}',
+                        text: ['Median value per color for all cars', 'on Autotrader in {{ year_selection }}'],
                         font: {
                             size: 25,
                             family: "Poppins",

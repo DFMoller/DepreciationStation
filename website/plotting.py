@@ -102,7 +102,7 @@ class ChartingEngine:
             'blue': '#2148BD',
             'grey': '#5a5a5a',
             'orange': '#F76A29',
-            'silver': '#DDDDDD',
+            'silver': '#C2C2C2',
             'white': '#FFFFFF'
         }
         lookup_border_colors = {
@@ -111,8 +111,8 @@ class ChartingEngine:
             'blue': '#2148BD',
             'grey': '#5a5a5a',
             'orange': '#F76A29',
-            'silver': '#DDDDDD',
-            'white': '#000000'
+            'silver': '#C2C2C2',
+            'white': '#FFFFFF'
         }
         for color in self.timeline_data:
             dataset = {
