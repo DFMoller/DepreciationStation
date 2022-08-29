@@ -168,6 +168,7 @@ nav{
 }
 main{
     width: 100%;
+    height: 100%;
     /* height: 90vh; */
     flex-basis: auto;
     display: flex;
@@ -178,19 +179,12 @@ main{
 .home-wrapper{
     /* margin-top: 1rem; */
     width: 100%;
-    display: flex;
-    /* margin-top: 1rem; */
-    padding-bottom: 2rem;
-}
-.left-col, .right-col{
-    width: 50%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 1rem;
-}
-.home-wrapper embed{
-    width: 90%;
+    /* margin-top: 1rem; */
+    padding-bottom: 2rem;
 }
 .radios-tab{
     /* background-color: var(--col-orange); */
@@ -230,8 +224,10 @@ main{
     margin-top: 0.5rem;
     text-align: center;
 }
-.graph{
-    margin: 1rem 0;
+.chart-box{ 
+    width: 100%;
+    height: 70vh;
+    padding: 1rem 2rem;
 }
 
 @media screen and (max-width: 1250px) {
@@ -240,7 +236,7 @@ main{
     }
 }
 @media screen and (max-width: 1150px) {
-    nav, .home-wrapper{
+    nav{
         flex-direction: column;
         align-items: center;
         justify-content: center;
@@ -248,9 +244,6 @@ main{
     nav{
         height: auto;
         padding: 10px 0;
-    }
-    .left-col, .right-col{
-        width: 60%;
     }
     .logo-box{
         width: 25rem;
@@ -263,16 +256,10 @@ main{
 }
 
 @media screen and (max-width: 900px) {
-    .left-col, .right-col{
-        width: 75%;
-        height: auto;
-    }
+
 }
 
 @media screen and (max-width: 600px) {
-    .left-col, .right-col{
-        width: 100%;
-    }
     .radios-tab{
         display: flex;
         flex-direction: column;

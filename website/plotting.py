@@ -1,9 +1,133 @@
+from time import strftime, strptime
 import pygal
 from pygal.style import Style
 from scipy.stats import linregress, zscore, stats
 from pandas import DataFrame
 import numpy as np
 from datetime import datetime, timedelta
+
+class ChartingEngine:
+    def __init__(self, snapshot_data, history_data, searches, selected_year):
+        self.raw_snapshot = snapshot_data
+        self.raw_timeline = history_data
+        self.snapshot_data = {}
+        self.timeline_data = {}
+        self.xlabels = []
+        self.searches = searches
+        self.year_selection = selected_year
+        self.lookup_table = {}
+        self.filter_searches()
+        self.prepare_data_structures()
+        self.filter_snapshot()
+        self.filter_timeline()
+        self.interpolate_timeline()
+    def filter_searches(self):
+        filtered_searches = []
+        for search in self.searches:
+            if search.year == self.year_selection:
+                filtered_searches.append(search)
+        self.searches = filtered_searches
+    def prepare_data_structures(self):
+        for search in self.searches:
+            self.lookup_table[search.id] = search.color
+            self.snapshot_data[search.color] = []
+            self.timeline_data[search.color] = []
+    def filter_snapshot(self):
+        num_readings = 0
+        for i in self.raw_snapshot:
+            if i.search_id in self.lookup_table and num_readings < 6000: # TODO: Could combine this into one line with db query
+                snapshot_instance = (i.mileage, i.value)
+                self.snapshot_data[self.lookup_table[i.search_id]].append(snapshot_instance)
+                num_readings += 1
+    def filter_timeline(self):
+        for i in self.raw_timeline:
+            if i.search_id in self.lookup_table:
+                timeline_instance = (datetime.strptime(i.date, '%d/%m/%Y'), i.median_value)
+                self.timeline_data[self.lookup_table[i.search_id]].append(timeline_instance)
+    def interpolate_timeline(self):
+        new_tl_data = self.timeline_data
+        all_dates = []
+        for color in new_tl_data:
+            for dp in new_tl_data[color]:
+                if dp[0] not in all_dates: all_dates.append(dp[0])
+        all_dates = sorted(all_dates)
+        starting_date = all_dates[0]
+        last_date = all_dates[-1]
+        for color in self.timeline_data:
+            # ensure this color has a value for the first date
+            if self.timeline_data[color][0][0] > starting_date:
+                new_tl_data[color].insert(0, (starting_date, self.timeline_data[color][0][1]))
+            if self.timeline_data[color][-1][0] < last_date:
+                new_tl_data[color].append(last_date, self.timeline_data[color][-1][1])
+            prev_date = self.timeline_data[color][0][0] # date of first dp
+            prev_val = self.timeline_data[color][0][1] # value of first dp
+            for i, dp in enumerate(self.timeline_data[color]):
+                if i > 0:
+                    date = dp[0]
+                    val = dp[1]
+                    gap_len = (date - prev_date).days - 1 # gap_len = 0 for consecutive days
+                    # len > 0 means there are missing datapoints
+                    if gap_len > 0:
+                        val_diff = val - prev_val
+                        val_increment = val_diff / (gap_len+1)
+                        for x in range(gap_len):
+                            new_date = prev_date + timedelta(days=x+1)
+                            new_val = prev_val + val_increment*(x+1)
+                            new_dp = (new_date, new_val)
+                            new_tl_data[color].insert(i+x, new_dp)
+                            if new_date not in all_dates:
+                                all_dates.append(new_date)
+                    prev_date = date
+                    prev_val = val
+        all_dates = sorted(all_dates)
+        self.timeline_data = new_tl_data
+        self.xlabels = [dt.strftime('%d %b %Y') for dt in all_dates]
+    def get_timeline_xlables(self):
+        return self.xlabels
+    def get_timeline_datasets(self):
+        datasets = []
+        # To have only every nth dot show
+        # len_xlabels = len(self.xlabels)
+        # desired_num_points = 50
+        # big_point_frequency = round(len_xlabels/desired_num_points)
+        # point_radiusses = []
+        # for x in range(len_xlabels):
+        #     if x % big_point_frequency == 0:
+        #         point_radiusses.append(3)
+        #     else:
+        #         point_radiusses.append(0)
+        lookup_background_colors = {
+            'black': '#000000',
+            'red': '#A9160B',
+            'blue': '#2148BD',
+            'grey': '#5a5a5a',
+            'orange': '#F76A29',
+            'silver': '#DDDDDD',
+            'white': '#FFFFFF'
+        }
+        lookup_border_colors = {
+            'black': '#000000',
+            'red': '#A9160B',
+            'blue': '#2148BD',
+            'grey': '#5a5a5a',
+            'orange': '#F76A29',
+            'silver': '#DDDDDD',
+            'white': '#000000'
+        }
+        for color in self.timeline_data:
+            dataset = {
+                'label': color.capitalize(),
+                'backgroundColor': lookup_background_colors[color],
+                'borderColor': lookup_border_colors[color],
+                # 'pointRadius': point_radiusses,
+                'data': [],
+                'yAxisID': 'y'
+            }
+            for dp in self.timeline_data[color]:
+                dataset['data'].append(dp[1]) # median value
+            datasets.append(dataset)
+        return datasets
+
 
 def plot_scatter_snapshot(graph_data, year):
 
