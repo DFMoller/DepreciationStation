@@ -132,9 +132,10 @@
             }
         };
 
-        var ctx = document.getElementById("myChart").getContext("2d");
-
-        var barchart = new Chart(ctx, config);
+        window.addEventListener('load', function() {
+            var ctx = document.getElementById("myChart").getContext("2d");
+            var barchart = new Chart(ctx, config);  
+        })
     });
 </script>
 {% endblock %}
