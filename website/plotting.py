@@ -7,10 +7,10 @@ import numpy as np
 from datetime import datetime, timedelta
 
 class ChartingEngine:
-    def __init__(self, snapshot_data, history_data, searches, selected_year):
-        self.raw_snapshot = snapshot_data
+    def __init__(self, history_data, searches, selected_year):
+        # self.raw_snapshot = snapshot_data
         self.raw_timeline = history_data
-        self.snapshot_data = {}
+        # self.snapshot_data = {}
         self.timeline_data = {}
         self.xlabels = []
         self.searches = searches
@@ -18,7 +18,7 @@ class ChartingEngine:
         self.lookup_table = {}
         self.filter_searches()
         self.prepare_data_structures()
-        self.filter_snapshot()
+        # self.filter_snapshot()
         self.filter_timeline()
         self.interpolate_timeline()
     def filter_searches(self):
@@ -30,12 +30,12 @@ class ChartingEngine:
     def prepare_data_structures(self):
         for search in self.searches:
             self.lookup_table[search.id] = search.color
-            self.snapshot_data[search.color] = []
+            # self.snapshot_data[search.color] = []
             self.timeline_data[search.color] = []
     def filter_snapshot(self):
         num_readings = 0
         for i in self.raw_snapshot:
-            if i.search_id in self.lookup_table and num_readings < 6000: # TODO: Could combine this into one line with db query
+            if i.search_id in self.lookup_table and num_readings < 6000:
                 snapshot_instance = (i.mileage, i.value)
                 self.snapshot_data[self.lookup_table[i.search_id]].append(snapshot_instance)
                 num_readings += 1
@@ -103,7 +103,7 @@ class ChartingEngine:
             'grey': '#5a5a5a',
             'orange': '#F76A29',
             'silver': '#C2C2C2',
-            'white': '#FFFFFF'
+            'white': '#BDDEE7'
         }
         lookup_border_colors = {
             'black': '#000000',
@@ -112,7 +112,7 @@ class ChartingEngine:
             'grey': '#5a5a5a',
             'orange': '#F76A29',
             'silver': '#C2C2C2',
-            'white': '#FFFFFF'
+            'white': '#BDDEE7'
         }
         for color in self.timeline_data:
             dataset = {

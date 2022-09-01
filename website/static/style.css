@@ -20,13 +20,13 @@
 }
 
 body {
-height: 100vh;
-width: 100%;
-overflow: hidden;
-display: flex;
-flex-direction: column;
-font-family: "Poppins", sans-serif;
-background-color: #E2EDF5;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    font-family: "Poppins", sans-serif;
+    /* background-color: #E2EDF5; */
 }
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */

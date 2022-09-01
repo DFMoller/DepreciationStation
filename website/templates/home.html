@@ -40,32 +40,34 @@
 
     document.addEventListener("DOMContentLoaded", function() {
 
+        console.log("Time Analysis:")
+        console.log({{ time_dict | safe }})
+
         const labels = {{ xlabels | safe }};
         
         const data = {
             labels: labels,
             datasets: {{ datasets | safe }}
         };
-
+        
         const background_plugin = {
             id: 'custom_canvas_background_color',
             beforeDraw: (chart) => {
-            const {ctx} = chart;
-            var chartArea = chart.chartArea
-            ctx.save();
-            ctx.globalCompositeOperation = 'destination-over';
-            ctx.fillStyle = '#D4E5F0';
-            // chartArea.left, chartArea.top, chartArea.right - chartArea.left, chartArea.bottom - chartArea.top
-            //ctx.fillRect(0, 0, chart.width, chart.height);
-            ctx.fillRect(chartArea.left, chartArea.top, chartArea.right - chartArea.left, chartArea.bottom - chartArea.top);
-            ctx.restore();
+                const {ctx} = chart;
+                var chartArea = chart.chartArea
+                ctx.save();
+                ctx.globalCompositeOperation = 'destination-over';
+                ctx.fillStyle = '#D4E5F0';
+                //ctx.fillRect(0, 0, chart.width, chart.height);
+                ctx.fillRect(chartArea.left, chartArea.top, chartArea.right - chartArea.left, chartArea.bottom - chartArea.top);
+                ctx.restore();
             }
         };
 
         const config = {
             type: 'line',
             data: data,
-            plugins: [background_plugin],
+            //plugins: [background_plugin],
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
@@ -95,26 +97,52 @@
                 },
                 scales:{
                     y: {
+                        title: {
+                            display: true,
+                            text: 'Value (Rand)',
+                            font: {
+                                size: 16,
+                                family: "Poppins",
+                                weight: 'normal'
+                            },
+                            color: '#6C99B7'
+                        },
                         type: 'linear',
-                        title: "y",
                         display: true,
                         position: 'left',
                         ticks: {
-                            color: '#6C99B7'
+                            color: '#6C99B7',
+                            font: {
+                                family: 'Poppins'
+                            }
                         },
                         grid: {
-                            borderColor: '#6C99B7'
+                            //borderColor: '#6C99B7'
                         }
                     },
                     xAxes: {
-                        ticks: {
-                            autoSkip: true,
-                            maxTicksLimit: 15,
+                        title: {
+                            display: true,
+                            text: 'Timeline (Dates)',
+                            font: {
+                                size: 16,
+                                family: "Poppins",
+                                weight: 'normal'
+                            },
                             color: '#6C99B7'
                         },
+                        ticks: {
+                            //autoSkip: true,
+                            maxTicksLimit: 15,
+                            color: '#6C99B7',
+                            maxRotation: 0,
+                            font: {
+                                family: 'Poppins'
+                            }
+                        },
                         grid: {
-                            borderColor: '#6C99B7'
-                        }
+                            //borderColor: '#6C99B7'
+                        }                        
                     }
                 },
                 elements: {
@@ -126,16 +154,33 @@
                         cubicInterpolationMode: 'default',
                         borderJoinStyle: 'round',
                         borderCapStyle: 'round',
-                        tension: 0.3
+                        tension: 0
                     }
                 }
             }
         };
 
+        function adapt_to_screen_size(lineChart) {
+            if (window.innerWidth < 1200) {
+                lineChart.options.scales.xAxes.ticks.maxRotation = 45
+                lineChart.options.scales.xAxes.ticks.minRotation = 45
+                lineChart.options.scales.y.title.display = false
+            } else if (window.innerWidth > 1200) {
+                lineChart.options.scales.xAxes.ticks.maxRotation = 0
+                lineChart.options.scales.xAxes.ticks.minRotation = 0
+                lineChart.options.scales.y.title.display = true
+            }
+        }
+
         window.addEventListener('load', function() {
             var ctx = document.getElementById("myChart").getContext("2d");
-            var barchart = new Chart(ctx, config);  
+            var lineChart = new Chart(ctx, config);
+            adapt_to_screen_size(lineChart)
+            window.addEventListener('resize', (event) => {
+                adapt_to_screen_size(lineChart)
+            })
         })
+
     });
 </script>
 {% endblock %}
