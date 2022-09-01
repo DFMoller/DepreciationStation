@@ -3,7 +3,7 @@ from . import db
 from .models import Search, History, Today
 from .plotting import ChartingEngine, plot_scatter_snapshot, plot_timeline, plot_density_snapshot
 from datetime import datetime, date
-import time
+import time, json
 
 views = Blueprint('views', __name__) # don't have to call it the file name
 
@@ -46,28 +46,28 @@ def home():
     xlabels = ce.get_timeline_xlables()
     time_dict['Get xLabels Time'] = time.time() - before_xlabels_time
     before_datasets_time = time.time()
-    datasets = ce.get_timeline_datasets()
+    median_datasets = ce.get_timeline_datasets_median()
+    relative_datasets = ce.get_timeline_datasets_relative()
     time_dict['Get Timeline Datasets Time'] = time.time() - before_datasets_time
     time_dict['Total View Time'] = time.time() - start_time
-    return render_template('home.html', years=years, year_selection=year_selection, datasets=datasets, xlabels=xlabels, time_dict=time_dict)
+    return render_template('home.html', years=years, year_selection=year_selection, median_datasets=median_datasets, relative_datasets=relative_datasets, xlabels=xlabels, time_dict=time_dict)
 
 # @views.route('/delete_data')
 # def delete():
 
 #     all_history = History.query.all()
-#     # all_today = Today.query.all()
+#     # all_today = Today.query.all() 
 
 #     # today = date.today().strftime('%d/%m/%Y')
-#     cutoff = datetime.strptime("29/07/2021", '%d/%m/%Y')
+#     cutoff = datetime.strptime("12/04/2022", '%d/%m/%Y')
 
 #     history_deleted = 0
-#     # discard = []
+#     discard = []
 #     for x in all_history:
 #         if datetime.strptime(x.date, '%d/%m/%Y') < cutoff:
 #             db.session.delete(x)
-#             # if x.date not in discard:
-#             #     discard.append(x.date)
 #             history_deleted += 1
+#             discard.append(str(x))
 
 #     # ret_str = ""
 #     # for x in discard:
@@ -84,10 +84,7 @@ def home():
 #     if history_deleted > 0:
 #         db.session.commit()
 
-#     return {
-#         "History Deleted": history_deleted
-#         # "Today Deleted": today_deleted
-#     }
+#     return json.dumps(discard)
 
 
 # @views.route('/data')

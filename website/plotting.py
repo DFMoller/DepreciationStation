@@ -84,8 +84,7 @@ class ChartingEngine:
         self.xlabels = [dt.strftime('%d %b %Y') for dt in all_dates]
     def get_timeline_xlables(self):
         return self.xlabels
-    def get_timeline_datasets(self):
-        datasets = []
+    def get_timeline_datasets_median(self):
         # To have only every nth dot show
         # len_xlabels = len(self.xlabels)
         # desired_num_points = 50
@@ -114,6 +113,7 @@ class ChartingEngine:
             'silver': '#C2C2C2',
             'white': '#BDDEE7'
         }
+        datasets = []
         for color in self.timeline_data:
             dataset = {
                 'label': color.capitalize(),
@@ -125,6 +125,42 @@ class ChartingEngine:
             }
             for dp in self.timeline_data[color]:
                 dataset['data'].append(dp[1]) # median value
+            datasets.append(dataset)
+        return datasets
+    def get_timeline_datasets_relative(self):
+        lookup_background_colors = {
+            'black': '#000000',
+            'red': '#A9160B',
+            'blue': '#2148BD',
+            'grey': '#5a5a5a',
+            'orange': '#F76A29',
+            'silver': '#C2C2C2',
+            'white': '#BDDEE7'
+        }
+        lookup_border_colors = {
+            'black': '#000000',
+            'red': '#A9160B',
+            'blue': '#2148BD',
+            'grey': '#5a5a5a',
+            'orange': '#F76A29',
+            'silver': '#C2C2C2',
+            'white': '#BDDEE7'
+        }
+        datasets = []
+        for color in self.timeline_data:
+            startnig_value = self.timeline_data[color][0][1]
+            dataset = {
+                'label': color.capitalize(),
+                'backgroundColor': lookup_background_colors[color],
+                'borderColor': lookup_border_colors[color],
+                # 'pointRadius': point_radiusses,
+                'data': [],
+                'yAxisID': 'y'
+            }
+            for dp in self.timeline_data[color]:
+                val = dp[1]
+                relative_change = ((val-startnig_value)/startnig_value)*100
+                dataset['data'].append(relative_change) # median value
             datasets.append(dataset)
         return datasets
 

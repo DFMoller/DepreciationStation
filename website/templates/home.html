@@ -22,7 +22,10 @@
 
 <div class="home-wrapper">
     <div class="chart-box">
-        <canvas class="myChart" id="myChart"></canvas>
+        <canvas class="myChart1" id="myChart1"></canvas>
+    </div>
+    <div class="chart-box">
+        <canvas class="myChart2" id="myChart2"></canvas>
     </div>
 </div>
 
@@ -39,148 +42,56 @@
     }
 
     document.addEventListener("DOMContentLoaded", function() {
-
         console.log("Time Analysis:")
         console.log({{ time_dict | safe }})
+    });
 
-        const labels = {{ xlabels | safe }};
-        
-        const data = {
-            labels: labels,
-            datasets: {{ datasets | safe }}
-        };
-        
-        const background_plugin = {
-            id: 'custom_canvas_background_color',
-            beforeDraw: (chart) => {
-                const {ctx} = chart;
-                var chartArea = chart.chartArea
-                ctx.save();
-                ctx.globalCompositeOperation = 'destination-over';
-                ctx.fillStyle = '#D4E5F0';
-                //ctx.fillRect(0, 0, chart.width, chart.height);
-                ctx.fillRect(chartArea.left, chartArea.top, chartArea.right - chartArea.left, chartArea.bottom - chartArea.top);
-                ctx.restore();
-            }
-        };
+    // Information used in seperate JS files
+    const xlabels = {{ xlabels | safe }};
+    const median_data = {
+        labels: xlabels,
+        datasets: {{ median_datasets | safe }}
+    };
+    const relative_data = {
+        labels: xlabels,
+        datasets: {{ relative_datasets | safe }}
+    };
+    const year_selection = {{ year_selection }}
 
-        const config = {
-            type: 'line',
-            data: data,
-            //plugins: [background_plugin],
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        position: 'top',
-                        labels: {
-                            color: '#6C99B7',
-                            padding: 15,
-                            font: {
-                                family: "Poppins",
-                                //size: 12
-                            }
-                        }
-                    },
-                    title: {
-                        display: true,
-                        text: ['Median value per color for all cars', 'on Autotrader in {{ year_selection }}'],
-                        font: {
-                            size: 25,
-                            family: "Poppins",
-                            weight: 'normal'
-                        },
-                        color: '#6C99B7'
-
-                    }
-                },
-                scales:{
-                    y: {
-                        title: {
-                            display: true,
-                            text: 'Value (Rand)',
-                            font: {
-                                size: 16,
-                                family: "Poppins",
-                                weight: 'normal'
-                            },
-                            color: '#6C99B7'
-                        },
-                        type: 'linear',
-                        display: true,
-                        position: 'left',
-                        ticks: {
-                            color: '#6C99B7',
-                            font: {
-                                family: 'Poppins'
-                            }
-                        },
-                        grid: {
-                            //borderColor: '#6C99B7'
-                        }
-                    },
-                    xAxes: {
-                        title: {
-                            display: true,
-                            text: 'Timeline (Dates)',
-                            font: {
-                                size: 16,
-                                family: "Poppins",
-                                weight: 'normal'
-                            },
-                            color: '#6C99B7'
-                        },
-                        ticks: {
-                            //autoSkip: true,
-                            maxTicksLimit: 15,
-                            color: '#6C99B7',
-                            maxRotation: 0,
-                            font: {
-                                family: 'Poppins'
-                            }
-                        },
-                        grid: {
-                            //borderColor: '#6C99B7'
-                        }                        
-                    }
-                },
-                elements: {
-                    point: {
-                        radius: 0
-                    },
-                    line: {
-                        borderWidth: 4,
-                        cubicInterpolationMode: 'default',
-                        borderJoinStyle: 'round',
-                        borderCapStyle: 'round',
-                        tension: 0
-                    }
-                }
-            }
-        };
-
-        function adapt_to_screen_size(lineChart) {
-            if (window.innerWidth < 1200) {
-                lineChart.options.scales.xAxes.ticks.maxRotation = 45
-                lineChart.options.scales.xAxes.ticks.minRotation = 45
-                lineChart.options.scales.y.title.display = false
-            } else if (window.innerWidth > 1200) {
-                lineChart.options.scales.xAxes.ticks.maxRotation = 0
-                lineChart.options.scales.xAxes.ticks.minRotation = 0
-                lineChart.options.scales.y.title.display = true
+    // Configuration to be used by both median_chart.js and relative_chart.js
+    const legend_config = {
+        position: 'top',
+        labels: {
+            color: '#6C99B7',
+            padding: 15,
+            font: {
+                family: "Poppins",
+                //size: 12
             }
         }
+    }
+    const xticks_config = {
+        //autoSkip: true,
+        maxTicksLimit: 12,
+        color: '#6C99B7',
+        maxRotation: 0,
+        font: {
+            family: 'Poppins'
+        }
+    }
+    const xtitle_config = {
+        display: true,
+        text: 'Timeline (Dates)',
+        font: {
+            size: 16,
+            family: "Poppins",
+            weight: 'normal'
+        },
+        color: '#6C99B7'
+    }
 
-        window.addEventListener('load', function() {
-            var ctx = document.getElementById("myChart").getContext("2d");
-            var lineChart = new Chart(ctx, config);
-            adapt_to_screen_size(lineChart)
-            window.addEventListener('resize', (event) => {
-                adapt_to_screen_size(lineChart)
-            })
-        })
-
-    });
 </script>
+
+<script src="../static/median_chart.js" type="text/javascript"></script>
+<script src="../static/relative_chart.js" type="text/javascript"></script>
 {% endblock %}
